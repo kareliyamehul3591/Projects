@@ -1,0 +1,121 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- END HEADER-->
+
+        <!-- START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!-- END SIDEBAR-->
+
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Add Milestone Form</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-body">
+                            <form [formGroup]="milestoneForm">
+                                <!--Order section-->
+                                <h4>Milestone Information</h4>
+                                <div class="row">
+                                    <!---order type-->
+                                    <div class="col-sm-6 form-group">
+                                        <label>Order Type</label>
+                                        <select formControlName="order_type" class="form-control">
+                                            <option value="" disabled>--Select Any--</option>
+                                            <option value="Sales Order">Sales Order</option>
+                                            <option value="Project">Project</option>
+                                            <option value="Work Order">Work Order</option>
+                                            <option value="Staffing Order">Staffing Order</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <mat-table [dataSource]="listData" formArrayName="milstoneDetails">
+                                            <mat-header-row *matHeaderRowDef="displayedColumns">
+                                            </mat-header-row>
+                                            <mat-row *matRowDef="let row; columns:displayedColumns; let i=index">
+                                            </mat-row>
+                                                <!--milestone name-->
+                                                <ng-container matColumnDef="Milestone Name">
+                                                    <mat-header-cell *matHeaderCellDef>
+                                                        Milestone Name
+                                                    </mat-header-cell>
+                                                    <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <mat-form-field>
+                                                        <input matInput type="text" class="form-control"
+                                                            formControlName="milestone_name">
+                                                    </mat-form-field>
+                                                    </mat-cell>
+                                                </ng-container>
+                                                <!--dsecriiption-->
+                                                <ng-container matColumnDef="Description">
+                                                    <mat-header-cell *matHeaderCellDef>
+                                                        Description
+                                                    </mat-header-cell>
+                                                    <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <mat-form-field>
+                                                        <textarea matInput type="text" class="form-control"
+                                                        formControlName="description"></textarea>
+                                                    </mat-form-field>
+                                                    </mat-cell>
+                                                </ng-container>
+                                                <!--alert-->
+                                                <ng-container matColumnDef="Send Alert">
+                                                    <mat-header-cell *matHeaderCellDef>
+                                                        Send Alert
+                                                    </mat-header-cell>
+                                                    <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <mat-checkbox 
+                                                        formControlName="send_alert" color="primary">Send Alert</mat-checkbox>
+                                                    </mat-cell>
+                                                </ng-container>
+                                                <!--action-->
+                                                <ng-container matColumnDef="Action">
+                                                    <mat-header-cell *matHeaderCellDef>
+                                                    <button mat-raised-button color="primary" aria-label="Action" (click)="addMilstone()">
+                                                        <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                                    </button>
+                                                    </mat-header-cell>
+                                                    <mat-cell *matCellDef="let row, let i=index" fxFlex='25%'>
+                                                    <button mat-icon-button aria-label="Action" color="warn"
+                                                        (click)="removeMilstone(i)">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                    </mat-cell>
+                                                </ng-container>
+                                        </mat-table>
+                                    </div>
+                                </div>
+                                    
+                                    <!--funtionality button-->
+                                    <div class="row" class="mt-4">
+                                        <div class="form-group">
+                                            <button mat-raised-button color="primary" [disabled]="(!milestoneForm.valid)"
+                                            (click)="onSubmit()">Save</button>
+                                            &nbsp;&nbsp;
+                                            <button mat-raised-button color="warn" routerLink="/milestone-list">Cancel</button>
+                                        </div>
+                                    </div>
+
+                                    <!--funtionality button-->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>

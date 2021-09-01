@@ -1,0 +1,80 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<h2 mat-dialog-title>View Invoice Details</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-danger">X</button>
+    </mat-dialog-actions>
+    <div class="row">
+        <!--invoice no-->
+        <div class="col-sm-10 form-group">
+            <label>Invoice Number</label>
+            <input value="{{eid}}" class="form-control" readonly="">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--customer name-->
+        <div class="col-sm-6 form-group">
+            <label>Customer Name</label>
+            <input value="{{customer_name}}" class="form-control" readonly="">
+        </div>
+        <!--customer address-->
+        <div class="col-sm-6 form-group">
+            <label>Customer Address</label>
+            <input value="{{customer_address}}" class="form-control" readonly="">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--term of payment-->
+        <div class="col-sm-6 form-group">
+            <label>Term Of Payment</label>
+            <input value="{{term_of_payment}}" class="form-control" readonly="">
+        </div>
+        <!--invoice date-->
+        <div class="col-sm-6 form-group">
+            <label>Invoice Date</label>
+            <input value="{{invoice_date}}"  class="form-control" readonly="">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--due date-->
+        <div class="col-sm-6 form-group">
+            <label>Due Date</label>
+            <input  value="{{due_date}}" class="form-control" readonly="">
+        </div>
+        <!--order type-->
+        <div class="col-sm-6 form-group">
+            <label>Order Type </label>
+            <input value="{{order_type}}" class="form-control" readonly="">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--remark-->
+        <div class="col-sm-6 form-group" >
+            <label>Remark</label>
+            <input value="{{remark}}" class="form-control" readonly="">
+        </div>
+        <!--description-->
+        <div class="col-sm-6 form-group">
+            <label>Description</label>
+            <input value="{{description}}"  class="form-control" readonly="">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--taxed-->
+        <div class="col-sm-6 form-group">
+            <label>Taxed</label>
+            <input value="{{taxed}}" class="form-control" readonly="" >
+        </div>
+        <!--amount-->
+        <div class="col-sm-6 form-group">
+            <label>Amount</label>
+            <input value="{{amount}}" class="form-control" readonly="">
+        </div>
+    </div>
+</mat-dialog-content>

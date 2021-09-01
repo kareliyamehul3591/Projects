@@ -1,0 +1,59 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+  <!--START PAGE WRAPPER-->
+    <div class="page-wrapper">
+    <!-- START HEADER-->
+    <app-header></app-header>
+    <!--END HEADER-->
+
+    <!--START SIDEBAR-->
+    <app-sidebar></app-sidebar>
+    <!--END SIDEBAR-->
+
+      <!--START CONTENT WRAPPER-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Add Registration Form</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title"></div>
+                            <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a></div>
+                        </div>
+                       <div class="ibox-body">
+                           <!--START FORM-->
+                            <form [formGroup]="registerform" (ngSubmit)="onSubmit()">
+                           
+                                <div class="row">
+                                    <!--Note-->
+                                    <div class="col-sm-12 form-group">
+                                        <textarea formControlName="register" class="form-control" rows="10" cols="50"></textarea>
+                                    </div>
+                                </div>
+                                <br/>
+
+                                  <!--START SUBMIT BUTTON-->
+                                    <div class="form-group">
+                                        <button  mat-raised-button color="primary">Save</button>
+                                        &nbsp;&nbsp;
+                                        <!-- <button [disabled]="(!registerform.valid || f!=0)" class="btn btn-primary">Submit</button> -->
+                                    </div>
+                                    <!--END SUBMIT BUTTON-->
+                            </form>
+                            <!--END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--SIDEBAR-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <!--SIDEBAR-->   
+</body>
+</html>

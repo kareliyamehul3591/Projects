@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <!--start page wrapper-->
+    <div class="page-wrapper">
+        <!--start header-->
+         <app-header></app-header>
+        <!--emd header-->
+
+        <!--start sidebar-->
+        <app-sidebar></app-sidebar>
+        <!--end sidebar-->
+
+        <!--start content wrapper-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Salary Slip</h1>
+            </div>
+            <!--salary slip-->
+            <div id="contentToConvert">
+                <button  style="margin-left:92%;margin-top:1%;" type="button" class="btn btn-success" value="Export To PDF" (click)="ConvertPDFWithWholepage()">Download</button>
+                <div class="row"  *ngFor="let data of recentdata">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-body">
+                                <div style="border:3px solid black" > 
+                                    <br/>
+                                    <div>
+                                        <div style="text-align:center"><h5><b>RAK SOFTECH PRIVATE LIMITED</b></h5> 
+                                            <h6>Payslip <br/>{{data.month_name}}-{{data.year}}<br/>{{data.first_name}} {{data.last_name}}</h6>
+                                        </div>
+                                        <!--start table-->
+                                        <table  style="width:96%;margin-left:2%;border:1px solid black">
+                                            <tr>
+                                                <td style="width:14%;border:0">Employee Number</td>
+                                                <td style="border:0">{{data.emp_code}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0">Function</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0">Designation</td>
+                                                <td style="border:0">{{data.desgn}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0">Location</td>
+                                                <td style="border:0">M&ML, Pune</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0">Bank Details</td>
+                                            </tr>
+                                        </table>
+                                        <!--end table-->
+                                        <br/>
+                                        <!--start table-->
+                                        <table style="width:96%;margin-left:2%;" >
+                                            <tr >
+                                                <th >Attendece Details</th>
+                                                <th style="text-align:center">Value</th> 
+                                                <th ></th>
+                                                <th style="text-align:center;">Value</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:38%">Present</td>
+                                                <td style="text-align:right;width:16%;">{{data.payble_days}}</td>
+                                                <td style="text-align:left;">Leave with Pay</td>
+                                                <td style="text-align:right;">{{(data.cl*1 + data.sl*1)}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td >Weekly Off</td>
+                                                <td style="text-align:right;">{{data.weekly_off}}</td>
+                                                <td style="text-align:left;">Leave without Pay</td>
+                                                <td style="text-align:right;">{{data.lwp}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td ></td>
+                                                <td style="text-align:right;"></td>
+                                                <td style="text-align:left;">Holiday</td>
+                                                <td style="text-align:right;">{{data.holidays}}</td>
+                                            </tr>
+                                        </table>
+                                        <!--end table--><br/>
+                                        <!--start table-->
+                                        <table style="width:96%;margin-left:2%;" >
+                                            <tr>
+                                                <th >Earnings</th>
+                                                <th style="text-align:center;">Amount</th> 
+                                                <th >Deductions</th>
+                                                <th style="text-align:center;">Amounts</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:38%;">Basic Pay</td>
+                                                <td style="text-align:right;width:16%;">{{data.basic}}</td>
+                                                <td style="text-align:left;">Prof. Tax</td>
+                                                <td style="text-align:right;">{{data.pt}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td >HRA </td>
+                                                <td style="text-align:right;">{{data.hr}}</td>
+                                                <td style="text-align:left;">ESIC</td>
+                                                <td style="text-align:right;">{{data.esic}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Conveyance Allowance/Vehicale Reimbursement</td>
+                                                <td style="text-align:right;">{{data.conveyance}}</td>
+                                                <td style="text-align:left;"> P. F. Cont.</td>
+                                                <td style="text-align:right;">{{data.epf}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td >Child Education Allowance</td>
+                                                <td style="text-align:right;">{{data.cea}}</td>
+                                                <td style="text-align:left;">TDS</td>
+                                                <td style="text-align:right;">{{data.tds}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td >LTA</td>
+                                                <td style="text-align:right;">{{data.lta}}</td>
+                                                <td style="text-align:left;">Advance/ Other Deductions</td>
+                                                <td style="text-align:right;">{{data.advance}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td >Medical Allowances</td>
+                                                <td style="text-align:right;">{{data.medical}}</td>
+                                                <td style="text-align:left;"></td>
+                                                <td style="text-align:right;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td >Attire Reimbursement </td>
+                                                <td style="text-align:right;">{{data.attire}}</td>
+                                                <td style="text-align:left;"></td>
+                                                <td style="text-align:right;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td >Sepecial Allowances</td>
+                                                <td style="text-align:right;">{{data.sa}}</td>
+                                                <td style="text-align:left;"></td>
+                                                <td style="text-align:right;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td >Other Allowances </td>
+                                                <td style="text-align:right;">{{data.other}}</td>
+                                                <td style="text-align:left;"></td>
+                                                <td style="text-align:right;"></td>
+                                            </tr>
+                                            <tr>
+                                                <td ><b>Total Earning</b></td>
+                                                <td style="text-align:right;"><b>{{data.gross_salary}}</b></td>
+                                                <td style="text-align:left;"><b>Total Deductions</b></td>
+                                                <td style="text-align:right;"><b> {{data.total_deduction}}</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td > </td>
+                                                <td style="text-align:right;"></td>
+                                                <td style="text-align:left;"><b>Net Salary</b></td>
+                                                <td style="text-align:right;"><b>{{data.net_salary}}</b></td>
+                                            </tr>
+                                        </table>
+                                        <!--end table-->
+                                        <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note : This Being a Computer generated payslip, No signatures required</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--salary slip-->
+        </div>
+    </div> 
+    <!--end page wrapper-->
+    <!--sidenav-->
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>

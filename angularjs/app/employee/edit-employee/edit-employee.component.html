@@ -1,0 +1,336 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+  <!--START PAGE WRAPPER-->
+    <div class="page-wrapper">
+    <!-- START HEADER-->
+    <app-header></app-header>
+    <!--END HEADER-->
+
+    <!--START SIDEBAR-->
+    <app-sidebar></app-sidebar>
+    <!--END SIDEBAR-->
+
+      <!--START CONTENT WRAPPER-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Update Employee Details</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title"></div>
+                            <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a></div>
+                        </div>
+                       <div class="ibox-body">
+                            <!--START FORM-->
+        <form  [formGroup]="registerform" (ngSubmit)="onSubmit()">
+            <h4>Personal Details</h4>
+            <div class="row">
+                <!--EMPLOYEE CODE-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('emp_code').errors &&
+                    (registerform.get('emp_code').touched || registerform.get('emp_code').dirty)}">
+                    <label>Emp Code</label>
+                    <input formControlName="emp_code" readonly="" class="form-control" type="text" placeholder="John">
+                        <span class="help-block" *ngIf="registerform.get('emp_code').errors &&
+                            (registerform.get('emp_code').touched || registerform.get('emp_code').dirty)">
+                            <span *ngIf="registerform.get('emp_code').errors.required" class="text-danger">First Name is required</span>
+                        </span>
+                </div>
+            </div>
+            <div class="row">
+                <!--FIRST NAME-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('first_name').errors &&
+                    (registerform.get('first_name').touched || registerform.get('first_name').dirty)}">
+                    <label>First Name</label>
+                    <input formControlName="first_name" pattern="[a-zA-Z ]*" class="form-control" type="text" placeholder="John">
+                    <span class="help-block" *ngIf="registerform.get('first_name').errors &&
+                        (registerform.get('first_name').touched || registerform.get('first_name').dirty)">
+                        <span *ngIf="registerform.get('first_name').errors.required" class="text-danger">First Name is required</span>
+                    </span>
+                </div>
+                <!--LAST NAME-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('last_name').errors &&
+                    (registerform.get('last_name').touched || registerform.get('last_name').dirty)}">
+                    <label>Last Name</label>
+                    <input formControlName="last_name" class="form-control" type="text" placeholder="Hendry">
+                    <span class="help-block" *ngIf="registerform.get('last_name').errors &&
+                        (registerform.get('last_name').touched || registerform.get('last_name').dirty)">
+                        <span *ngIf="registerform.get('last_name').errors.required" class="text-danger">Last Name is required</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <!--DOB-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('dob').errors &&
+                    (registerform.get('dob').touched || registerform.get('dob').dirty)}">
+                    <label>Dob</label>
+                    <input formControlName="dob" class="form-control" type="date" placeholder="01 May 1980">
+                    <span class="help-block" *ngIf="registerform.get('dob').errors &&
+                        (registerform.get('dob').touched || registerform.get('dob').dirty)">
+                        <span *ngIf="registerform.get('dob').errors.required" class="text-danger">Date of birth is required</span>
+                    </span>
+                </div>
+                <!--GENDER-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('gender').errors &&
+                    (registerform.get('gender').touched || registerform.get('gender').dirty) }">
+                    <label>Gender</label>
+                    <select class="form-control" id="gender" formControlName="gender">
+                        <option>--Select Gender--</option>
+                        <option value="F">Female</option>
+                        <option value="M">Male</option>
+                    </select>
+                    <span class="help-block" *ngIf="registerform.get('gender').errors &&
+                        (registerform.get('gender').touched || registerform.get('gender').dirty)">
+                        <span *ngIf="registerform.get('gender').errors.required" class="text-danger">Gender is required</span>
+                    </span>
+                </div>
+            </div>
+                
+            <h4>Contact_Info</h4>
+            <div class="row">
+                <!--MOBILE NO-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('mobile_no').errors &&
+                    (registerform.get('mobile_no').touched || registerform.get('mobile_no').dirty)}">
+                    <label>Mobile No.</label>
+                    <input formControlName="mobile_no" class="form-control" type="text" placeholder="+91 6565656567">
+                    <span class="help-block" *ngIf="registerform.get('mobile_no').errors &&
+                        (registerform.get('mobile_no').touched || registerform.get('mobile_no').dirty)">
+                        <span *ngIf="registerform.get('mobile_no').errors.required" class="text-danger">Mobile No. is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('mobile_no').errors &&
+                        (registerform.get('mobile_no').touched || registerform.get('mobile_no').dirty)">
+                        <span *ngIf="registerform.get('mobile_no').errors.minlength || 
+                            registerform.get('mobile_no').errors.maxlength" class="text-danger">Mobile No. should be 10 digit</span>
+                    </span>
+                </div>
+                <!--ALTERNATIVE NO-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('alternate_mobile_no').errors &&
+                    (registerform.get('alternate_mobile_no').touched || registerform.get('alternate_mobile_no').dirty)}">
+                    <label>Alternate Mobile No.</label>
+                    <input formControlName="alternate_mobile_no" class="form-control" type="text" placeholder="+91 8988778787">
+                    <span class="help-block" *ngIf="registerform.get('alternate_mobile_no').errors &&
+                        (registerform.get('alternate_mobile_no').touched || registerform.get('alternate_mobile_no').dirty)">
+                        <span *ngIf="registerform.get('alternate_mobile_no').errors.required" class="text-danger">Alternate Mobile No. is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('alternate_mobile_no').errors &&
+                        (registerform.get('alternate_mobile_no').touched || registerform.get('alternate_mobile_no').dirty)">
+                        <span *ngIf="registerform.get('alternate_mobile_no').errors.minlength || 
+                        registerform.get('alternate_mobile_no').errors.maxlength" class="text-danger">Alternate Mobile No. should be 10 digit</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <!--PERSONAL EMAIL-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('personal_email').errors &&
+                    (registerform.get('personal_email').touched || registerform.get('personal_email').dirty)}">
+                    <label class="form-control-label">Personal Email</label>
+                    <input formControlName="personal_email" class="form-control" type="text" placeholder="example@gmail.com">
+                    <span class="help-block" *ngIf="registerform.get('personal_email').errors &&
+                        (registerform.get('personal_email').touched || registerform.get('personal_email').dirty)">
+                        <span *ngIf="registerform.get('personal_email').errors.required" class="text-danger">Email Id is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('personal_email').errors &&
+                        (registerform.get('personal_email').touched || registerform.get('personal_email').dirty)">
+                        <span *ngIf="registerform.get('personal_email').errors.email" class="text-danger">Email should be valid</span>
+                    </span>
+                </div>
+                <!--PROFESSIONAL EMAIL-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('professional_email').errors &&
+                    (registerform.get('professional_email').touched || registerform.get('professional_email').dirty)}">
+                    <label>Professional Email</label>
+                    <input formControlName="professional_email" class="form-control" type="text" placeholder="example1@gmail.com">
+                    <span class="help-block" *ngIf="registerform.get('professional_email').errors &&
+                        (registerform.get('professional_email').touched || registerform.get('professional_email').dirty)">
+                        <span *ngIf="registerform.get('professional_email').errors.required" class="text-danger">Professional Email is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('professional_email').errors &&
+                        (registerform.get('professional_email').touched || registerform.get('professional_email').dirty)">
+                        <span *ngIf="registerform.get('professional_email').errors.email" class="text-danger">Email Should be valid</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <!--ADDRESS-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('address').errors &&
+                    (registerform.get('address').touched || registerform.get('address').dirty) }">
+                    <label>Address</label>
+                    <input formControlName="address" class="form-control" type="text" placeholder="Address">
+                    <span class="help-block" *ngIf="registerform.get('address').errors &&
+                        (registerform.get('address').touched || registerform.get('address').dirty)">
+                        <span *ngIf="registerform.get('address').errors.required" class="text-danger">Address is required</span>
+                    </span>
+                </div>
+                <!--AADHAR CARD-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('aadhaar').errors &&
+                    (registerform.get('aadhaar').touched || registerform.get('aadhaar').dirty)}">
+                    <label>Adhar No.</label>
+                    <input formControlName="aadhaar" class="form-control" type="text" placeholder="xxxxx, xxxx. sd">
+                    <span class="help-block" *ngIf="registerform.get('aadhaar').errors &&
+                        (registerform.get('aadhaar').touched || registerform.get('aadhaar').dirty)">
+                        <span *ngIf="registerform.get('aadhaar').errors.required" class="text-danger">Adhar No. is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('aadhaar').errors &&
+                        (registerform.get('aadhaar').touched || registerform.get('aadhaar').dirty)">
+                        <span *ngIf="registerform.get('aadhaar').errors.minlength" class="text-danger">Adhar No. must be at least 12 characters</span>
+                    </span>
+                </div>
+            </div>
+            
+            <h4>Bank_Info</h4>
+            <div class="row">
+                <!--PAN CARD NO-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('pan').errors &&
+                    (registerform.get('pan').touched || registerform.get('pan').dirty)}">
+                    <label>Pan Card No.</label>
+                    <input formControlName="pan" class="form-control" type="text" placeholder="xxxxx, xxxx. sd">
+                    <span class="help-block" *ngIf="registerform.get('pan').errors &&
+                        (registerform.get('pan').touched || registerform.get('pan').dirty)">
+                        <span *ngIf="registerform.get('pan').errors.required" class="text-danger">Pan No. is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('pan').errors &&
+                        (registerform.get('pan').touched || registerform.get('pan').dirty)">
+                        <span *ngIf="registerform.get('pan').errors.pattern" class="text-danger">Pan No. must be at least 12 characters
+                        </span>
+                    </span>
+                </div>
+                <!--ACCOUNT NO-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('account_no').errors &&
+                    (registerform.get('account_no').touched || registerform.get('account_no').dirty)}">
+                    <label>Account No.</label>
+                    <input  formControlName="account_no" class="form-control" type="text" placeholder="xxxxx, xxxx. sd">
+                    <span class="help-block" *ngIf="registerform.get('account_no').errors &&
+                        (registerform.get('account_no').touched || registerform.get('account_no').dirty)">
+                        <span *ngIf="registerform.get('account_no').errors.required" class="text-danger">Account No. is required</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <!--BANK NAME-->
+                <div class="col-sm-6 form-group">
+                    <label>Bank Name</label>
+                    <input class="form-control" formControlName="bank_name" type="text" placeholder="Bank Name">
+                    <span class="help-block" *ngIf="registerform.get('bank_name').errors &&
+                        (registerform.get('bank_name').touched || registerform.get('bank_name').dirty)">
+                        <span *ngIf="registerform.get('bank_name').errors.required" class="text-danger">Bank Name is required</span>
+                    </span>
+                </div>
+                <!--IFSC-->
+                <div class="col-sm-6 form-group">
+                    <label>IFSC</label>
+                    <input class="form-control" formControlName="ifsc"  type="text" placeholder="IFSC No.">
+                    <span class="help-block" *ngIf="registerform.get('ifsc').errors &&
+                        (registerform.get('ifsc').touched || registerform.get('ifsc').dirty)">
+                        <span *ngIf="registerform.get('ifsc').errors.required" class="text-danger">IFSC is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('ifsc').errors &&
+                        (registerform.get('ifsc').touched || registerform.get('ifsc').dirty)">
+                        <span *ngIf="registerform.get('ifsc').errors.pattern" class="text-danger">IFSC is invalid</span>
+                    </span>
+                </div>
+            </div>
+            <!--EDUCATION-->
+            <h4>Educational Details</h4>
+            <div class="row">
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('qualification').errors &&
+                    (registerform.get('qualification').touched || registerform.get('qualification').dirty)}">
+                    <label>Qualification</label>
+                    <input formControlName="qualification" class="form-control" type="text" placeholder="Education Details">
+                    <span class="help-block" *ngIf="registerform.get('qualification').errors &&
+                        (registerform.get('qualification').touched || registerform.get('qualification').dirty)">
+                        <span *ngIf="registerform.get('qualification').errors.required" class="text-danger">Qualification is required</span>
+                    </span>
+                </div>
+            </div>
+            <!--official-->
+            <h4>Offical Info</h4>
+            <div class="row">
+                <!--DATE OF JOINING-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('doj').errors &&
+                    (registerform.get('doj').touched || registerform.get('doj').dirty)}">
+                    <label>Date Of Joining</label>
+                    <input formControlName="doj" class="form-control" type="date" placeholder="Joining Date">
+                    <span class="help-block" *ngIf="registerform.get('doj').errors &&
+                    (registerform.get('doj').touched || registerform.get('doj').dirty)">
+                        <span *ngIf="registerform.get('doj').errors.required" class="text-danger">Date Of Joining is required</span>
+                    </span>
+                </div>
+                <!--DESIGNATION-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('designation_id').errors &&
+                    (registerform.get('designation_id').touched || registerform.get('designation_id').dirty)}">
+                    <label>Designation</label>
+                    <select class="form-control" formControlName="designation_id" >
+                        <option value="">--Select Gender--</option>
+                        <option value="{{item.id}}" *ngFor="let item of fetchdesign">{{item.name}}</option>
+                    </select>
+                    <span class="help-block" *ngIf="registerform.get('designation_id').errors &&
+                        (registerform.get('designation_id').touched || registerform.get('designation_id').dirty)">
+                        <span *ngIf="registerform.get('designation_id').errors.required" class="text-danger">Designation is required</span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <!--LOCATION NAME-->
+                 <div class="col-sm-6 form-group" >
+                    <label>Location Name</label>
+                    <select class="form-control" formControlName="location_id">
+                        <option value="" >--Select Location--</option>
+                        <option value="{{data.id}}" *ngFor="let data of fetchloc">{{data.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <!--LEAVE DETAILS-->
+            <h4>Leave Details</h4>
+            <div class="row">
+                <!--SICK LEAVE-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('sl_entitled').errors &&
+                    (registerform.get('sl_entitled').touched || registerform.get('sl_entitled').dirty)}">
+                    <label>Sick Leave</label>
+                    <input formControlName="sl_entitled"  class="form-control" type="text" placeholder="Sick Leave">
+                    <span class="help-block" *ngIf="registerform.get('sl_entitled').errors &&
+                        (registerform.get('sl_entitled').touched || registerform.get('sl_entitled').dirty)">
+                        <span *ngIf="registerform.get('sl_entitled').errors.required" class="text-danger">SL is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('sl_entitled').errors &&
+                        (registerform.get('sl_entitled').touched || registerform.get('sl_entitled').dirty)">
+                        <span *ngIf="registerform.get('sl_entitled').errors.pattern" class="text-danger">CL is invalid</span>
+                    </span>
+                </div>
+                <!--CAUSAL LEAVE-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('cl_entitled').errors &&
+                    (registerform.get('cl_entitled').touched || registerform.get('cl_entitled').dirty)}">
+                    <label>Causal Leave</label>
+                    <input formControlName="cl_entitled" class="form-control" type="text" placeholder="Causal Leave">
+                    <span class="help-block" *ngIf="registerform.get('cl_entitled').errors &&
+                        (registerform.get('cl_entitled').touched || registerform.get('cl_entitled').dirty)">
+                        <span *ngIf="registerform.get('cl_entitled').errors.required" class="text-danger">CL is required</span>
+                    </span>
+                    <span class="help-block" *ngIf="registerform.get('cl_entitled').errors &&
+                        (registerform.get('cl_entitled').touched || registerform.get('cl_entitled').dirty)">
+                        <span *ngIf="registerform.get('cl_entitled').errors.pattern" class="text-danger">CL is invalid</span>
+                    </span>
+                </div>
+            </div>
+            <!--SUBMIT BUTTON-->
+            <div class="form-group">
+                <button [disabled]="!registerform.valid" mat-raised-button color="primary">Save</button>
+                &nbsp;&nbsp;
+                <button mat-raised-button color="warn" routerLink="/showemp">Cancel</button>
+            </div>
+        </form>
+        <!--END FORM-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--SIDEBAR-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <!--SIDEBAR-->   
+</body>
+</html>

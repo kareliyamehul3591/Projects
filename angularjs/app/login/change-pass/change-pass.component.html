@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body class="bg-silver-300" style="margin-top:0%;">
+    <div class="content" style="margin-top:12%">
+        <!--start form-->  
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+            <h2 class="login-title">Change Password</h2>
+            <!--new password-->
+            <div class="form-group">
+                <div class="input-group-icon right">
+                    <div class="input-icon" [ngClass]="{'has-error':loginform.get('password').errors &&
+                        (loginform.get('password').touched || loginform.get('password').dirty)
+                        }"><i class="fa fa-envelope"></i>
+                    </div>
+                    <input class="form-control" formControlName="password"  type="text" name="password" placeholder="New Password" autocomplete="off">
+                </div>
+                    <span class="help-block" *ngIf="loginform.get('password').errors &&
+                        (loginform.get('password').touched || loginform.get('password').dirty)">
+                        <span *ngIf="loginform.get('password').errors.required" class="text-danger">This Field is required</span>
+                    </span>
+            </div>
+            
+            <!--Confirm Password-->
+            <div class="form-group">
+                <div class="input-group-icon right" [ngClass]="{'has-error':loginform.get('confirmPass').errors &&
+                    (loginform.get('confirmPass').touched || loginform.get('confirmPass').dirty)}">
+                    <div class="input-icon"><i class="fa fa-lock font-16"></i></div>
+                    <input class="form-control" formControlName="confirmPass" type="password" name="confirmPass" placeholder="Re-Enter Password">
+                </div>
+                    <span class="help-block" *ngIf="loginform.get('confirmPass').errors &&
+                        (loginform.get('confirmPass').touched || loginform.get('confirmPass').dirty)">
+                        <span *ngIf="loginform.get('confirmPass').errors.required" class="text-danger">This Field is required</span>
+                    </span> 
+                    <span *ngIf="pNotMatched" class="text-danger">Password And Confirm Password Not Match</span>
+            </div>
+
+            <!--back button-->
+            <div class="form-group d-flex justify-content-between">
+               <a style="color:blue;" (click)="login()">Back</a>
+            </div>
+            
+            <!--login button-->
+            <div class="form-group">
+                <button  [disabled]="!loginform.valid || pNotMatched"  class="btn btn-info btn-block" type="submit">Login</button>
+            </div>
+        </form>
+        <!--end form-->
+    </div>
+
+    <!-- BEGIN PAGA BACKDROPS-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <br/><br/><br/><br/><br/>
+</body>
+</html>

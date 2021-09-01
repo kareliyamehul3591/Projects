@@ -1,0 +1,82 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <!--start page wrapper-->
+    <div class="page-wrapper">
+        <!--start header-->
+        <app-header></app-header>
+        <!--end header-->
+
+        <!--start sidebar-->
+        <app-sidebar></app-sidebar>
+        <!--end sidebar-->
+
+        <!--start content wrapper-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Salary List</h1>
+                <input type="file"   (change)="onFileChange($event)"/>
+            </div>
+            <div class="page-content fade-in-up">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <div class="ibox-title"></div>
+                                <div class="ibox-tools"> <a href="#" class="btn btn-primary" style="color:white"
+                                    routerLink="/create-salaryslip">
+                                      
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    Fitment Details</a>
+                                    <!-- <button class="btn btn-primary" id="button">Upload</button>
+                                    <input type="file"  style="opacity:0; position:relative; left:-40px;"  (change)="onFileChange($event)"/> -->
+                                    
+                            </div>
+                            </div>
+                            <div class="ibox-body">
+                                <!--start table-->
+                                <table class="table table-striped table-bordered table-hover" id="example-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Emp-Code</th>
+                                            <th>Name</th>
+                                            <th>Designation</th>
+                                            <th>Gross Salary</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of recentdata">
+                                            <td>{{data.emp_code}}</td>
+                                            <td>{{data.first_name}} {{data.last_name}}</td>
+                                            <td>{{data.desgn}}</td>
+                                            <td>{{data.gross_salary}}</td>
+                                            <td>
+                                                <a  (click)="openDialog(data.sid)">
+                                                    <i class='fa fa-eye' style="font-size:24px"></i>
+                                                </a> ||
+                                                <a (click)="editsalary(data.sid)">
+                                                    <i class='fas fa-edit' style="font-size:24px"></i>
+                                                </a> ||
+                                                <a (click)="delete_salary(data.sid)">
+                                                    <i class='fa fa-trash'  style="font-size:24px"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+   <!--end page wrapper-->
+
+   <!--sidenav-->
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>

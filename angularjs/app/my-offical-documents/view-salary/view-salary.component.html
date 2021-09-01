@@ -1,0 +1,99 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<h2 mat-dialog-title>View Salary Details</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-danger">X</button>
+    </mat-dialog-actions>
+    <div class="row">
+        <!--basic pay-->
+        <div class="col-sm-6 form-group" >
+            <label>Basic Pay</label>
+            <input value="{{basic}}" readonly="" class="form-control" type="text">
+        </div>
+        <!--hra-->
+        <div class="col-sm-6 form-group" >
+            <label>HRA</label>
+            <input value="{{hra}}" readonly="" class="form-control" type="text">
+        </div>
+    </div>    
+    <div class="row">
+        <!--conveyance-->
+        <div class="col-sm-6 form-group" >
+            <label>Conveyance</label>
+            <input value="{{conveyance}}" readonly="" class="form-control" type="text">
+        </div>
+        <!--cea-->
+        <div class="col-sm-6 form-group">
+            <label>CEA</label>
+            <input readonly="" value="{{cea}}" class="form-control" type="text">
+        </div>
+    </div>
+    <div class="row">
+        <!--lta-->
+        <div class="col-sm-6 form-group" >
+            <label>LTA</label>
+            <input value="{{lta}}" readonly="" class="form-control" type="text">
+        </div>
+        <!--medical-->
+        <div class="col-sm-6 form-group" >
+            <label>Medical</label>
+            <input value="{{medical}}" readonly="" class="form-control" type="text">
+        </div>
+    </div>
+    <div class="row">
+        <!--attire-->
+        <div class="col-sm-6 form-group" >
+            <label>Attire</label>
+            <input readonly="" value="{{attire}}" class="form-control" type="text">
+        </div>
+        <!--special-->
+        <div class="col-sm-6 form-group" >
+            <label>Special</label>
+            <input readonly="" value="{{special}}" class="form-control" type="text">
+        </div>
+    </div> 
+    <div class="row">
+        <!--other-->
+        <div class="col-sm-6 form-group">
+            <label>Other</label>
+            <input readonly="" value="{{other}}" class="form-control" type="text">
+        </div>
+        <!--total earning-->
+        <div class="col-sm-6 form-group">
+            <label>Total Earning</label>
+            <input readonly="" value="{{(basic*1   +hra*1  +conveyance*1 +cea*1 +lta*1 +medical*1
+                +attire*1 +special*1 +other*1) || 0}}" class="form-control" type="text">
+        </div>
+        <!--gross salary-->
+        <div class="col-sm-6 form-group">
+            <label>Gross Salary</label>
+            <input readonly="" value="{{gross_salary}}" class="form-control" type="text">
+        </div>
+    </div> <br/><hr/>
+    <div class="row">
+        <!--pt-->
+        <div class="col-sm-6 form-group" >
+            <label>PT</label>
+            <input value="{{pt}}" readonly="" class="form-control" type="text">
+        </div>  
+        <!--pf cont-->
+        <div class="col-sm-6 form-group" >
+            <label>P.F.Cont.</label>
+            <input readonly="" value="{{epf}}" class="form-control" type="text">
+        </div>
+    </div>
+    <div class="row">
+        <!--total deduction-->
+        <div class="col-sm-6 form-group" >
+            <label>Total Deduction</label>
+            <input value="{{pt*1 + epf*1 || 0}}" readonly="" class="form-control" type="text">
+        </div>  
+        <!--net salary-->
+        <div class="col-sm-6 form-group" >
+            <label>Net Salary</label>
+            <input readonly="" value="{{(basic*1   +hra*1  +conveyance*1 +cea*1 +lta*1 +medical*1
+                +attire*1 +special*1 +other*1)-(pt*1 + epf*1)|| 0}}" class="form-control" type="text">
+        </div>
+    </div>
+</mat-dialog-content>

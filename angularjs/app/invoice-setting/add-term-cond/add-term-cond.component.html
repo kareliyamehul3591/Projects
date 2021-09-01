@@ -1,0 +1,61 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- END HEADER-->
+         
+        <!--START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!--END SIDEBAR-->
+
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Add Terms & Condition Form</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title"></div>
+                            <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a></div>
+                        </div>
+                        <div class="ibox-body">
+                            <!--foorm-->
+                            <form [formGroup]="termform" (ngSubmit)="onSubmit()" >
+                                <div>
+                                    <div class="row">
+                                        <!--Terms & Condition-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Terms & Condition</label>
+                                            <input formControlName="term" class="form-control" type="text" placeholder="Terms & Condition">
+                                           
+                                        </div>
+                                        
+                                    </div>
+
+                                </div><br/>
+                                
+                                <!--funtionality button-->
+                                <div class="form-group">
+                                    <button  mat-raised-button color="primary">Save</button>
+                                     &nbsp;&nbsp;
+                                     <a href="#" routerLink="/term-condition"  class="btn btn-danger">Cancel</a>
+                                </div>
+                                <!--funtionality button-->
+                            </form>
+                            <!--foorm-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <!--start page wrapper-->
+    <div class="page-wrapper">
+
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- END HEADER-->
+        
+        <!-- START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!-- END SIDEBAR-->
+        
+        <!--start content wrapper-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Upload Form 16</h1>
+            </div>
+            <div class="page-content fade-in-up">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <div class="ibox-title">Form 16</div>
+                                <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a></div>
+                            </div>
+                            <div class="ibox-body">
+                                <!--start form-->
+                                <form [formGroup]="registerform" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <!--employee id-->
+                                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('emp_id').errors &&
+                                            (registerform.get('emp_id').touched || registerform.get('emp_id').dirty)}">
+                                            <label>Employee Id</label>
+                                            <select formControlName="emp_id" class="form-control" (change)="selectOption($event.target.value)">
+                                                <option value="">--Select Id--</option>
+                                                <option *ngFor="let data of recentdata" value="{{data.id}}">{{data.emp_code}}</option>
+                                            </select>
+                                                <span class="help-block" *ngIf="registerform.get('emp_id').errors &&
+                                                    (registerform.get('emp_id').touched || registerform.get('emp_id').dirty)">
+                                                    <span *ngIf="registerform.get('emp_id').errors.required" class="text-danger">Employee Id is required</span>
+                                                </span>
+                                        </div>
+                                        <!--employee name-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Emp Name</label>
+                                            <input class="form-control" value="{{fname}} {{lname}}" type="text" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!--select year-->
+                                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('year').errors &&
+                                            (registerform.get('year').touched || registerform.get('year').dirty)}">
+                                            <label>Select Year</label>
+                                            <select name="year" formControlName="year" class="form-control" >
+                                                <option value="">--Select Year--</option>
+                                                <option *ngFor="let year of years" [ngValue]="year">{{year}}</option>
+                                            </select>
+                                                <span class="help-block" *ngIf="registerform.get('year').errors &&
+                                                    (registerform.get('year').touched || registerform.get('year').dirty)">
+                                                    <span *ngIf="registerform.get('year').errors.required" class="text-danger">Year is required</span>
+                                                </span>
+                                        </div>
+                                        <!--upload form 16-->
+                                        <div class="col-sm-6 form-group" [ngClass]="{'has-error':registerform.get('year').errors &&
+                                            (registerform.get('year').touched || registerform.get('year').dirty) }">
+                                            <label>Upload Form-16</label>
+                                            <input (change)="onSelectedFile2($event)" formControlName="form16_pdf_path" type="file" class="form-control">
+                                                <span class="help-block" *ngIf="registerform.get('form16_pdf_path').errors &&
+                                                    (registerform.get('form16_pdf_path').touched || registerform.get('form16_pdf_path').dirty)">
+                                                    <span *ngIf="registerform.get('form16_pdf_path').errors.required" class="text-danger">Form-16 is required</span>
+                                                </span>
+                                        </div>
+                                    </div>
+                                    <!--add button-->
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="submit">Add</button>
+                                    </div>
+                                </form>
+                                <!--end form-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="page-content fade-in-up">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                            </div>
+                            <div class="ibox-body">
+                                <div style="overflow:auto;">
+                                    <div class="mat-elevation-z8">
+                                        <!--start table-->
+                                        <mat-table [dataSource]="listData" matSort>
+                                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                            <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+                                                <!--employee code-->
+                                                <ng-container matColumnDef="emp_code" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Emp Code</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">{{element.emp_code}} </mat-header-cell>
+                                                </ng-container>
+                                                <!--first name-->
+                                                <ng-container matColumnDef="first_name" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">{{element.first_name}} {{element.last_name}}</mat-header-cell>
+                                                </ng-container>
+                                                <!--designation-->
+                                                 <ng-container matColumnDef="desgn" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>DesignationSS</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">{{element.desgn}}</mat-header-cell>
+                                                </ng-container>
+                                                <!--form 16-->
+                                                <ng-container matColumnDef="form16_pdf_path" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Form 16</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">
+                                                        <a target="_blank" href="{{'http://79.137.30.8:5000/'+element.form16_pdf_path}}" >Download</a>
+                                                    </mat-header-cell>
+                                                </ng-container>
+                                        </mat-table>
+                                        <!--end table-->
+                                        <!--start pagination-->
+                                        <mat-paginator [length]="100"
+                                            [pageSize]="5"
+                                            [pageSizeOptions]="[5, 10, 25, 100]">
+                                        </mat-paginator>
+                                        <!--end pagination-->                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--end content wrapper-->
+
+        <!-- BEGIN PAGA BACKDROPS-->
+        <div class="sidenav-backdrop backdrop"></div>
+    </div>
+     <!--end page wrapper-->
+</body>
+</html>

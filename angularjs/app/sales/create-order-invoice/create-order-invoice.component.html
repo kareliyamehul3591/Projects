@@ -1,0 +1,232 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- end HEADER-->
+
+        <!-- START sidebar-->
+        <app-sidebar></app-sidebar>
+        <!-- end sidebar-->
+
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Add Invoice Form</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-body">
+                            <!--foorm-->
+                            <form [formGroup]="invoiceForm">
+                                <!--Order section-->
+                                <h4>Invoice Information</h4>
+                                <div style="border-style: double;">
+                                    <div class="row">
+                                        <!---order number-->
+                                        
+                                        <div class="col-sm-6 form-group">
+                                            <label>Order Number</label>
+                                            <select  formControlName="order_number" class="form-control" (change)="getcustomer_name($event.target.value)">
+                                                <option value="" disabled>--Select Any--</option>
+                                                <option *ngFor="let value of recentvalue" value="{{value.order_number}}">
+                                                    {{value.order_number}}</option>
+                                            </select>
+                                        </div>
+                                        <!---invoice date-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Invoice Date</label>
+                                            <input class="form-control" formControlName="invoice_date" type="date"
+                                                placeholder="01/01/1974">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!---customer name-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Customer Name</label>
+                                            <input class="form-control" formControlName="order_name" type="text"
+                                                placeholder="Customer Name">
+                                        </div>
+                                        <!--customer address-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Customer Address</label>
+                                            <textarea class="form-control" formControlName="customer_address" type="text"
+                                                placeholder="Customer Address"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!---Due Date-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Due Date</label>
+                                            <input class="form-control" formControlName="due_date" type="date"
+                                                placeholder="01/01/1974">
+                                        </div>
+                                        <!---order type---->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Order Type</label>
+                                            <input class="form-control" formControlName="order_type" type="text"
+                                                placeholder="Order Type">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <!---term of payment-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Term Of Payment
+                                            </label>
+                                            <select formControlName="term_of_payment" class="form-control">
+                                                <option value="" disabled>--Select Any--</option>
+                                                <option value="Cash">Cash</option>
+                                                <option value="Cheque">Cheque</option>
+                                                <option value="DD">DD</option>
+                                                <option value="Bank Transfer">Bank Transfer</option>
+                                            </select>
+                                        </div>
+                                        <!---remark-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Remark</label>
+                                            <textarea formControlName="remark" class="form-control" type="text"
+                                                placeholder="remark"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h4>Invoice Details Information</h4>
+                                <div style="border-style: double;">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!--START TABLE-->
+                                        <mat-table [dataSource]="listData" formArrayName="order_invoice_info">
+                                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                            <mat-row *matRowDef="let row; columns:displayedColumns; let i=index"></mat-row>
+                                            <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+                                            <!---sr no----->
+                                            <ng-container matColumnDef="sr-no">
+                                                <mat-header-cell *matHeaderCellDef>
+                                                    Sr. No
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    {{i+1}}
+                                                </mat-cell>
+                                                <mat-footer-cell *matFooterCellDef>Total</mat-footer-cell>
+                                            </ng-container>
+                                            <!----description----->
+                                            <ng-container matColumnDef="description">
+                                                <mat-header-cell *matHeaderCellDef>
+                                                    Description
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <input type="text" class="form-control mr-3"
+                                                        formControlName="invoice_description">
+                                                </mat-cell>
+                                                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                            </ng-container>
+                                            <!----quantity-->
+                                            <ng-container matColumnDef="quantity">
+                                                <mat-header-cell *matHeaderCellDef>
+                                                    Quantity
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <input formControlName="quantity" type="text"
+                                                        class="form-control mr-3"
+                                                        (keyup)="calculateAmountAndTotal(i,$event.target.value)">
+                                                </mat-cell>
+                                                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                            </ng-container>
+                                            <!----unit rate-->
+                                            <ng-container matColumnDef="unit-rate">
+                                                <mat-header-cell *matHeaderCellDef>
+                                                        Unite Rate
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <input formControlName="unit_price" type="text"
+                                                        class="form-control mr-3"
+                                                        (keyup)="calculateAmountAndTotal(i,$event.target.value)">
+                                                </mat-cell>
+                                                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                            </ng-container>
+                                            <!----gst-->
+                                            <ng-container matColumnDef="gst">
+                                                <mat-header-cell *matHeaderCellDef>
+                                                    GST
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <input formControlName="gst" type="text" class="form-control mr-3"
+                                                        (keyup)="calculateAmountAndTotal(i , $event.target.value)">
+                                                </mat-cell>
+                                                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                            </ng-container>
+                                            <!----amount-->
+                                            <ng-container matColumnDef="amount">
+                                                <mat-header-cell *matHeaderCellDef>
+                                                    Amount
+                                                </mat-header-cell>
+                                                <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                                    <input formControlName="invoice_amount" type="text"
+                                                        class="form-control mr-3" readonly>
+                                                </mat-cell>
+
+                                                <mat-footer-cell *matFooterCellDef>{{invoiceForm.controls['total'].value}}</mat-footer-cell>
+                                            </ng-container>
+                                            <!--ADD BUTTON-->
+                                            <ng-container matColumnDef="action">
+                                                <mat-header-cell *matHeaderCellDef>
+                                                    <button mat-raised-button color="primary" aria-label="Action" (click)="addPurchaseRequest()">
+                                                        <i class="fa fa-plus" aria-hidden="true"></i> Add
+                                                    </button>
+                                                </mat-header-cell>
+                                                <!--DELETE BUTTON-->
+                                                <mat-cell *matCellDef="let row, let i=index" fxFlex='25%'>
+                                                    <button mat-icon-button aria-label="Action" color="warn"
+                                                        (click)="removePurchaseRequest(i)">
+                                                        <mat-icon>delete</mat-icon>
+                                                    </button>
+                                                </mat-cell>
+                                                <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                            </ng-container>
+                                        </mat-table>
+                                        <!--END TABLE-->
+                                    </div>
+                                </div>
+                            </div>
+
+                                <h4>Description Information</h4>
+                                <div style="border-style: double;">
+                                    <div class="row">
+                                        <!---description-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Description</label>
+                                            <textarea formControlName="description" class="form-control" type="text"
+                                                placeholder="Description"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                    </div>
+                                </div>
+
+                                <!--funtionality button-->
+                                <div class="row" class="mt-4">
+                                    <div class="form-group">
+                                        <button mat-raised-button color="primary" [disabled]="(!invoiceForm.valid)" (click)="onSubmit()">Save</button>
+                                        &nbsp;&nbsp;
+                                        <a routerLink="/order-invoice-list" mat-raised-button color="warn">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--foorm-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>
