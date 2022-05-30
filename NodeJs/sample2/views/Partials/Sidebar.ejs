@@ -1,0 +1,170 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left side-menu">
+    <div class="slimscroll-menu" id="remove-scroll">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu" id="side-menu">
+
+                <% if(auth_data){ %>
+                    <% if(auth_data.role=="admin" || auth_data.role=="super_admin" ){ %>
+                        <% if(auth_data.role=="super_admin" ){ %>
+                        <li>
+                            <a href="<%= process.env.AAP_URL %>admin" class="waves-effect">
+                                <img src="<%= process.env.AAP_URL %>public/assets/images/iamges/dashboard.svg" alt="">
+                                <!-- <span
+                                    class="badge badge-primary badge-pill float-right">2</span>  --><span> Dashboard
+                                </span>
+                            </a>
+                        </li>
+                       
+                            <li>
+                                <a href="<%= process.env.AAP_URL %>admin/admin" class="waves-effect">
+                                    <img src="<%= process.env.AAP_URL %>public/assets/images/iamges/Manage Admin.svg"
+                                        alt=""><span class="badge badge-primary badge-pill float-right"></span>
+                                    <span>
+                                        Manage Admin</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<%= process.env.AAP_URL %>admin/profile-request" class="waves-effect">
+                                    <img src="<%= process.env.AAP_URL %>public/assets/images/iamges/image request.svg"
+                                        alt=""><span class="badge badge-primary badge-pill float-right"></span>
+                                    <span>
+                                        Manage Profile Image</span>
+                                </a>
+                            </li>
+                            <% } %>
+                                <li>
+                                    <a href="<%= process.env.AAP_URL %>admin/user" class="waves-effect">
+                                        <!-- <i class="mdi mdi-account-circle "></i> -->
+                                        <img src="<%= process.env.AAP_URL %>public/assets/images/iamges/profile.svg"
+                                            alt=""><span class="badge badge-primary badge-pill float-right"></span>
+                                        <span>
+                                            Manage Users</span>
+                                    </a>
+                                </li>
+                                
+                                
+                                
+                                <!--  <li class="menu-title">Therapist</li> -->
+                                <li>
+                                    <a href="<%= process.env.AAP_URL %>admin/therapist" class="waves-effect">
+                                        <img src="<%= process.env.AAP_URL %>public/assets/images/iamges/Manage Therapist.svg"
+                                            alt=""><span class="badge badge-primary badge-pill float-right"></span>
+                                        <span>
+                                            Manage Therapist </span>
+                                    </a>
+                                </li>
+                                <!--  <li>
+                            <a href="<%= process.env.AAP_URL %>admin/moderator" class="waves-effect">
+                                <i class="mdi mdi-account-circle"></i><span
+                                    class="badge badge-primary badge-pill float-right"></span> <span> Moderator </span>
+                            </a>
+                        </li> -->
+                                <li>
+                                    <a href="<%= process.env.AAP_URL %>admin/appointments" class="waves-effect"><img
+                                            src="<%= process.env.AAP_URL %>public/assets/images/iamges/appointments.svg"
+                                            alt=""><span>
+                                            Manage Appointments <span class="float-right menu-arrow">
+                                                <!-- <i
+                                            class="mdi mdi-chevron-right"> --></i>
+                                            </span> </span></a>
+                                            <ul class="submenu">
+                                                <li><a href="<%= process.env.AAP_URL %>admin/appointments/upcoming-appointment">Upcoming Appointments</a></li>
+                                                <li><a href="<%= process.env.AAP_URL %>admin/appointments/past-appointment">Past Appointments</a></li>
+                                            </ul>
+                                    <!-- <ul class="submenu">
+                                <li><a href="<%= process.env.AAP_URL %>admin/appointments">Appointments</a></li>
+                                <li><a href="<%= process.env.AAP_URL %>">Today Appointments</a></li>
+                                <li><a href="<%= process.env.AAP_URL %>">Upcoming Appointments</a></li>
+                            </ul> -->
+                                </li>
+                                <li>
+                                    <a href="<%= process.env.AAP_URL %>admin/transections" class="waves-effect"><img
+                                            src="<%= process.env.AAP_URL %>public/assets/images/iamges/payment_method.svg"
+                                            alt=""><span> Manage Transactions <span class="float-right menu-arrow">
+                                                <!-- <i class="mdi mdi-chevron-right"></i> -->
+                                            </span>
+                                        </span></a>
+                                    <!-- <ul class="submenu">
+                                <li><a href="<%= process.env.AAP_URL %>">Payment Details</a></li>
+                                <li><a href="<%= process.env.AAP_URL %>">Payment History</a></li>
+                                <li><a href="<%= process.env.AAP_URL %>">Raise Disputes</a></li>
+                            </ul> -->
+                                </li>
+                                <% if(auth_data.role=="super_admin" ){ %>
+                                <li>
+                                    <a href="<%= process.env.AAP_URL %>admin/cms" class="waves-effect">
+                                        <i class="mdi mdi-library-plus"
+                                            style="font-size: 150%;color: #e77a36 !important;"></i><span
+                                            class="badge badge-primary badge-pill float-right"></span> <span> Manage
+                                            Static
+                                            Pages </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<%= process.env.AAP_URL %>admin/slider_setting_list" class="waves-effect">
+                                        <i class="mdi mdi-library-plus"
+                                            style="font-size: 150%;color: #e77a36 !important;"></i><span
+                                            class="badge badge-primary badge-pill float-right"></span> <span> Web Settings </span>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li><a href="<%= process.env.AAP_URL %>admin/slider_setting_list">Main Image Slider </a></li>
+                                        <li><a href="<%= process.env.AAP_URL %>admin/slider_list">Success Story Slider </a></li>
+                                        <li><a href="<%= process.env.AAP_URL %>admin/settings">Settings </a></li>
+                                        <li><a href="<%= process.env.AAP_URL %>admin/social_media">Social Media </a></li>
+                                    </ul>
+                                </li>
+                                <% } %>
+                                <% }else if(auth_data.role=="therapist" ){ %>
+                                    <li>
+                                        <a href="<%= process.env.AAP_URL %>therapist" class="waves-effect">
+                                            <img src="<%= process.env.AAP_URL %>public/assets/images/iamges/dashboard.svg"
+                                                alt="">
+                                            <!-- <span
+                                        class="badge badge-primary badge-pill float-right">2</span>  --><span>
+                                                Dashboard </span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-title">Schedule </li>
+                                    <li>
+                                        <a href="<%= process.env.AAP_URL %>therapist/schedule" class="waves-effect">
+                                            <i class="mdi mdi-calendar-clock"></i><span
+                                                class="badge badge-primary badge-pill float-right"></span> <span>
+                                                Schedule
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<%= process.env.AAP_URL %>therapist/appointments" class="waves-effect"><img
+                                                src="<%= process.env.AAP_URL %>public/assets/images/iamges/appointments.svg"
+                                                alt=""><span>
+                                                Manage Appointments <span class="float-right menu-arrow">
+                                                    <!-- <i
+                                                class="mdi mdi-chevron-right"> --></i>
+                                                </span> </span></a>
+                                                <ul class="submenu">
+                                                    <li><a href="<%= process.env.AAP_URL %>therapist/appointments/upcoming-appointment">Upcoming Appointments</a></li>
+                                                    <li><a href="<%= process.env.AAP_URL %>therapist/appointments/past-appointment">Past Appointments</a></li>
+                                                </ul>
+                                        <!-- <ul class="submenu">
+                                    <li><a href="<%= process.env.AAP_URL %>admin/appointments">Appointments</a></li>
+                                    <li><a href="<%= process.env.AAP_URL %>">Today Appointments</a></li>
+                                    <li><a href="<%= process.env.AAP_URL %>"><script src="<%= (auth_data.role == 'super_admin' ) ? process.env.AAP_URL+'public/assets/pages/super_admin_datatables.init.js' : process.env.AAP_URL+'public/assets/pages/admin_datatables.init.js'%>"></script>intments</a></li>
+                                </ul> -->
+                                    </li>
+                                    <% } %>
+                                        <% } %>
+            </ul>
+
+        </div>
+        <!-- Sidebar -->
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->

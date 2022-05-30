@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <title>
+    <%= title %>
+  </title>
+  <meta content="Admin Dashboard" name="description" />
+  <meta content="Themesbrand" name="author" />
+
+  <%- HeaderCss %>
+    <% include ./Partials/HeaderStyle %>
+      <style>
+        .side-menu {
+          width: 240px;
+          z-index: 10;
+          background: #ffffff;
+          bottom: 0;
+          margin-top: 0;
+          padding-bottom: 30px;
+          position: fixed;
+          top: 70px;
+        }
+
+        #sidebar-menu>ul>li>a.active {
+          color: #cf5003 !important;
+          background-color: #ffffff;
+        }
+
+        .submenu li a:hover {
+          color: #cf5003 !important;
+          background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .page-title {
+          color: #cf5003 !important;
+
+        }
+
+        #sidebar-menu>ul>li>a:hover,
+        #sidebar-menu>ul>li>a:focus,
+        #sidebar-menu>ul>li>a:active {
+          color: #cf5003;
+        }
+
+        .topbar .topbar-left {
+          background: #ffffff;
+          float: left;
+          text-align: center;
+          height: 70px;
+          position: relative;
+          width: 240px;
+          z-index: 1;
+        }
+
+        .submenu li.active>a {
+          color: #cf5003;
+          background-color: #ffffff;
+        }
+
+        #sidebar-menu>ul>li>a {
+          color: #1E1C1D;
+          display: block;
+          padding: 13px 20px;
+          font-size: 13.3px;
+          position: relative;
+          -webkit-transition: all 0.5s;
+          transition: all 0.5s;
+          font-size: 115%;
+        }
+
+        .submenu li a {
+          color: #1E1C1D;
+          display: block;
+          -webkit-transition: all 0.5s;
+          transition: all 0.5s;
+        }
+
+        /*  table tbody tr {
+          background: #fff;
+          border-bottom: 1px solid #cf5003;
+        } */
+
+        /*   .table td,
+        .table thead th {
+          padding: .75rem;
+          vertical-align: top;
+          border-bottom: 1px solid #cf5003;
+        } */
+
+        .btn-success:hover,
+        .btn-success:focus,
+        .btn-success:active,
+        .btn-success.active,
+        .btn-success.focus,
+        .btn-success:active,
+        .btn-success:focus,
+        .btn-success:hover,
+        .open>.dropdown-toggle.btn-success,
+        .btn-outline-success.active,
+        .btn-outline-success:active,
+        .show>.btn-outline-success.dropdown-toggle,
+        .btn-outline-success:hover,
+        .btn-success.active,
+        .btn-success:active,
+        .show>.btn-success.dropdown-toggle,
+        .btn-success:not(:disabled):not(.disabled).active:focus,
+        .btn-success:not(:disabled):not(.disabled):active:focus,
+        .show>.btn-success.dropdown-toggle:focus {
+          background-color: #cf5003;
+          border: 1px solid #cf5003;
+        }
+
+        .btn-success {
+          background-color: #cf5003;
+          border: 1px solid #cf5003;
+        }
+
+        div.dataTables_wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+      </style>
+</head>
+
+<body>
+  <div id="wrapper">
+    <% include ./Partials/Header %>
+      <% include ./Partials/Sidebar %>
+        <div class="content-page">
+          <%- body %>
+        </div>
+        <% include ./Partials/Footer %>
+  </div>
+
+  <% include ./Partials/FooterScript %>
+
+    <%- FooterJs %>
+      <!-- App js -->
+      <script src="<%= process.env.AAP_URL %>public/assets/js/app.js"></script>
+
+</body>
+
+</html>

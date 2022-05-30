@@ -1,0 +1,43 @@
+<% include ../Partials/HeaderRoot %>
+
+    <div class="wrapper-page">
+
+        <div class="card" style="width: 120%;height: 340px;">
+            <div class="card-body">
+
+                <h3 class="text-center m-0">
+                    <a href="/" class="logo logo-admin"><img
+                            src="<%= process.env.AAP_URL %>public/assets/images/logo.png" height="50" alt="logo"></a>
+                </h3>
+
+                <div class="p-3">
+                    <h4 class="text-muted font-18 mb-3 text-center">
+                        <%= title %>
+                    </h4>
+                    <div class="alert alert-" role="alert">
+                        Password created successfully. Please use the login button to login
+                    </div>
+
+                    <center>
+                        <a href="<%= url  %>"
+                            <% if(url == "javascript:void(0)"){ %> onclick="login()" <% } %> class="btn btn-success waves-effect waves-light" style="margin-top: 7%;">Login</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(auth_data){ %>
+        
+        <script>
+            function login(){
+                Swal.fire({
+                icon: 'error',
+                title: 'You can`t Logged In...',
+                text: 'Already Logged In Other User! First Logged Out',
+                });
+            }
+            /* login(); */
+        </script>
+        <% } %>
+    <% include ../Partials/FooterRoot %>

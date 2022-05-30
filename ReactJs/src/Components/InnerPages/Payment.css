@@ -1,0 +1,24 @@
+.profile_image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+}
+.swal-wide{
+    width:300px;
+    font-family: 'Quicksand', sans-serif;
+  
+}
+.error {
+    color: red;
+  
+    }
+
+ #alert_msg{
+     display: none;
+ }   
+
+ .alert {
+    width: 65%;
+  }
+  
