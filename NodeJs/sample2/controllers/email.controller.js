@@ -1,6 +1,6 @@
 /* const nodemailer = require('nodemailer'); */
 const sgMail = require( '@sendgrid/mail' );
-sgMail.setApiKey( "ApiKey" );
+sgMail.setApiKey( "ApiKey" ); 
 
 module.exports = {
   email: function (email_data) {
