@@ -1,0 +1,121 @@
+<h2 mat-dialog-title>Update Enquiry Details</h2>
+<mat-dialog-content class="mat-typography">
+<mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-danger">X</button>
+        
+      </mat-dialog-actions>
+
+      <form  [formGroup]="registerform" (ngSubmit)="onSubmit()">
+            <div class="row">
+                    <div class="col-sm-6 form-group" *ngIf="enquiry_id==1 || enquiry_id==2">
+                        <label>Reference</label>
+                      
+                        <select formControlName="reference_id" class="form-control select2_demo_1">
+                            <option value="">--Select Any--</option>
+                        <!-- <option *ngFor="let data of get_reference" value="{{data.id}}">{{data.name}}</option>
+                         -->
+                    </select>                                              
+                    </div>
+
+                    
+                    <div class="col-sm-6 form-group" >
+                            <label>Name</label>
+                            <input  formControlName="name" class="form-control" type="text" placeholder="xxxxx, xxxx. sd">
+                           
+                        </div>
+                
+                
+                        <div class="col-sm-6 form-group" *ngIf="enquiry_id==2">
+                            <label>Project Name</label>
+                            <input  formControlName="project_name" class="form-control" type="text">
+                                                                            
+                        </div>
+    
+                        <div class="col-sm-6 form-group" *ngIf="enquiry_id!=1">
+                                <label>Company Name</label>
+                                <input  formControlName="company_name" class="form-control" type="text">
+                                                                                
+                            </div>
+                        
+                    
+                    
+
+               
+                                                            <div class="col-sm-6 form-group">
+                                                                <label>Contact No.</label>
+                                                                <input  formControlName="mobile_no" class="form-control" type="text">
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                            <div class="col-sm-6 form-group">
+                                                                <label>Email Id</label>
+                                                                <input  formControlName="email" class="form-control" type="text">
+                                                                
+                                                            </div>
+                                                        
+
+                                                       
+                                                                <div class="col-sm-6 form-group"  *ngIf="enquiry_id==1">
+                                                                    <label>Qualification</label>
+                                                                    <input  formControlName="edu_quali" class="form-control" type="text">
+                                                                    
+                                                                    
+                                                                    
+                                                                </div>
+                                                                <div class="col-sm-6 form-group">
+                                                                    <label>Address</label>
+                                                                    <input  formControlName="address" class="form-control" type="text">
+                                                                    
+                                                                </div>
+                                                           
+
+                                                           
+                                                                    <div class="col-sm-6 form-group" *ngIf="enquiry_id==1">
+                                                                        <label>Fees(RS.)</label>
+                                                                        <input  formControlName="fees" class="form-control" type="text">
+                                                                        
+                                                                        
+                                                                        
+                                                                    </div>
+                                                                    <div class="col-sm-6 form-group">
+                                                                        <label>Status</label>
+                                                                        <input  formControlName="status" class="form-control" type="text">
+                                                                        
+                                                                    </div>
+
+                                                                    <div class="col-sm-6 form-group" *ngIf="enquiry_id==3 ||enquiry_id==4">
+                                                                            <label>CTC</label>
+                                                                            <input  formControlName="ctc" class="form-control" type="text">
+                                                                            
+                                                                        </div>
+
+                                                                        <div class="col-sm-6 form-group" *ngIf="enquiry_id==3 ||enquiry_id==4">
+                                                                                <label>Designation</label>
+                                                                                <input  formControlName="designation" class="form-control" type="text">
+                                                                                
+                                                                            </div>
+
+                                                                            <div class="col-sm-6 form-group" *ngIf="enquiry_id==3">
+                                                                                <label>GSTIN</label>
+                                                                                <input  formControlName="gstin" class="form-control" type="text">
+                                                                                
+                                                                            </div>
+
+                                                                            <div class="col-sm-6 form-group" *ngIf="enquiry_id==3">
+                                                                                    <label>State</label>
+                                                                                    <input  formControlName="st_name" class="form-control" type="text">
+                                                                                    
+                                                                                </div>
+
+                                                                                <div class="col-sm-6 form-group" *ngIf="enquiry_id==3">
+                                                                                        <label>Purchase Order</label>
+                                                                                        <input  formControlName="po" class="form-control" type="text">
+                                                                                        
+                                                                                    </div>
+                                                                </div>
+         
+    </form>
+
+    
+</mat-dialog-content>

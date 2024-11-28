@@ -1,0 +1,223 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <!--start page wrapper--> 
+    <div class="page-wrapper">
+
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- END HEADER-->
+
+        <!--START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!--END SIDEBAR-->
+
+        <!--START CONTENT WRAPPER-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Invoice</h1>
+                <button  style="margin-left:92%;margin-top:1%;" type="button" class="btn btn-success" 
+                value="Export To PDF" (click)="ConvertPDFWithWholepage()"><i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div id="contentToConvert" class="ibox-body" style="border:3px solid black">
+                            <!--START FORM-->
+                            
+                            <form [formGroup]="invoiceForm">
+                                <!--Order section-->
+                                 <!--bussiness details-->
+                                <div class="invoice-header">
+                                    <div class="row">
+                                        <div class="col-2" style="margin-bottom:3%;margin-left:2%">
+                                            <div class="invoice-logo">
+                                                
+                                                <!-- <img src="{{url}}" style="width:100%;margin-left:-23%"/> -->
+                                                <img src="assets/img/a1.png" style="width:100%;margin-left:-23%"/>
+                                                <!-- <img src="http://79.137.30.8:5000/uploads/1586528320045rak%20logo.png" style="width:100%;margin-left:-23%" alt="img" > -->
+                                                <!-- <input type="file">
+                                                <p style="color:green;">click to upload</p> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <div>
+                                                <h3><div class="m-b-5 font-bold">RAK SOFTECH PRIVATE LTD</div></h3>
+                                                <ul class="list-unstyled m-t-10">
+                                                    <li class="font-bold">{{officevalue}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <div>
+                                                <h3><div class="m-b-4 font-bold">Invoice</div></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                 <!--invoice details-->
+                                 <hr style="border:1px solid black">
+                                 <div class="invoice-header">
+                                    <div class="row">
+                                        
+                                        <div class="col-7">
+                                            <h3> <div>
+                                                <ul class="list-unstyled m-t-8">
+                                                    <li><h5>{{registerationvalue}}</h5></li>
+                                                </ul>
+                                                <div class="m-b-5">Invoice Number:{{id}}</div>
+                                            </div></h3>
+                                        </div>
+                                        <div class="col-5">
+                                            <h3> <div>
+                                                <ul class="list-unstyled m-t-8">
+                                                    <li><h5>Order No:{{order_no}}</h5></li>
+                                                </ul>
+                                                <div class="m-b-5">Invoice Date {{invoice_date}}</div>
+                                            </div></h3>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--customer details-->
+                                <hr style="border:1px solid black">
+                                <!--2 block-->
+                                <div class="invoice-header">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <h3><div class="invoice-logo font-bold">
+                                                Bill To : 
+                                            </div></h3>
+                                        </div>
+                                        <div class="col-3">
+                                            <div>
+                                                <h5><div class="m-b-2">{{customer_name}}<br/>{{customer_address}}</div></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <h3><div class="invoice-logo font-bold">
+                                                Shift To :
+                                            </div></h3>
+                                        </div>
+                                        <div class="col-3">
+                                            <div>
+                                                <h5><div class="m-b-2">{{customer_name}}<br/>{{customer_address}}</div></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end customer details-->
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                    <!--START TABLE-->
+                                    <mat-table [dataSource]="listData">
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns:displayedColumns; let i=index"></mat-row>
+                                    <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+                                    <!---sr no----->
+                                    <!-- <ng-container matColumnDef="sr-no">
+                                        <mat-header-cell *matHeaderCellDef>
+                                            Sr. No
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row, let i=index" [formGroupName]="i">
+                                            {{i+1}}
+                                        </mat-cell>
+                                        <mat-footer-cell *matFooterCellDef>Total</mat-footer-cell>
+                                    </ng-container> -->
+                                    <!----description----->
+                                    <ng-container matColumnDef="description">
+                                        <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+                                        <mat-header-cell *matCellDef="let element">{{element.invoice_description}}</mat-header-cell>
+                                        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                    </ng-container>
+                                    <!----quantity-->
+                                    <ng-container matColumnDef="quantity">
+                                        <mat-header-cell *matHeaderCellDef>Quantity</mat-header-cell>
+                                        <mat-header-cell *matCellDef="let element">{{element.quantity}}</mat-header-cell>
+                                        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                    </ng-container>
+                                    <!----actual rate-->
+                                    <ng-container matColumnDef="unit-price">
+                                        <mat-header-cell *matHeaderCellDef>
+                                            Unit Price
+                                        </mat-header-cell>
+                                        <mat-header-cell *matCellDef="let element">{{element.unit_price}}</mat-header-cell>
+                                        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                                    </ng-container>
+                                     <!----gst-->
+                                     <ng-container matColumnDef="gst">
+                                        <mat-header-cell *matHeaderCellDef>
+                                            GST
+                                        </mat-header-cell>
+                                        <mat-header-cell *matCellDef="let element">{{element.gst}}</mat-header-cell>
+                                        <mat-footer-cell *matFooterCellDef>Total :<br/> Paid Amount :<br/> Balance Due :<br/></mat-footer-cell>
+                                    </ng-container>
+                                    <!----amount-->
+                                    <ng-container matColumnDef="amount">
+                                        <mat-header-cell *matHeaderCellDef>
+                                            Amount
+                                        </mat-header-cell>
+                                        <mat-header-cell *matCellDef="let element">{{element.invoice_amount}}</mat-header-cell>
+                                        <mat-footer-cell *matFooterCellDef>{{total}}<br/> --<br/>{{total}}</mat-footer-cell>
+                                    </ng-container>
+                                    
+                                    </mat-table>
+                                    <!--END TABLE-->
+                                    <br/><br/>
+                                    <!--note-->
+                                    <div class="invoice-header">
+                                        <div class="row">
+                                            <div class="col-12 text-left">
+                                                <div>
+                                                    <div class="m-b-12 font-bold">Notes:</div>{{notevalue}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--note-->
+                                    <br/>
+                                    <!--signature-->
+                                    <div class="row col-lg-12" style="border:1px solid black;margin-left:0%">
+                                        <div class="col-lg-6">
+                                            <p></p>
+                                            <br/><br/><br/><br/><br/><br/>
+                                            <p style="text-align:center">Receiver's Signature</p>
+                                        </div>
+                                       
+                                        <div class="col-lg-1" style="border-left:1px solid black"></div>
+                                        <div class="col-lg-5">
+                                            <p>For RAK Softech Pvt. Ltd.</p>
+                                            <br/><br/><br/><br/><br/><br/>
+                                            <p>Authorized Signatory</p>
+                                        </div>
+                                    </div>
+                                    <div class="row col-lg-12" style="border:1px solid black;margin-left:0%">
+                                        <div class="col-lg-12">
+                                            <h4 style="text-align:center">THANK YOU FOR YOUR BUSINESS</h4>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </form>
+                           
+                            <!--END FORM-->
+                        </div>
+                    </div><button mat-raised-button color="warn" routerLink="/order-invoice-list">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <!--END CONTENT WRAPPER-->
+        
+    </div>
+     <!--END page wrapper--> 
+
+    <!--SIDENAV-->
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>

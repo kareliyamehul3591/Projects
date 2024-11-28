@@ -1,0 +1,48 @@
+var datafor = "";
+var therapist_schedule_id = [];
+var ids = "";
+var therapist_schedule_status = [];
+var schedule_date = [];
+
+$.each(data.data , function (key, value) {
+       var sss = JSON.stringify(value);
+       var ggg = JSON.parse(sss);
+
+       therapist_schedule_id = ggg['therapist_schedule_id'];
+       therapist_schedule_status = ggg['therapist_schedule_status'];
+       schedule_date = ggg['schedule_date'];
+       ids += ggg['id']+',';
+
+       var hhh = ggg['schedule'];
+       datafor += hhh+',';
+    });
+if (data.success == 1) {
+    var schedule_timess = datafor.split(',');
+    var schedule_time = schedule_timess.slice(0, -1);
+    var multiids = ids.split(',');
+    var id = multiids.slice(0, -1);
+    
+    
+    $("#update_schedule_date").val(schedule_date);
+    $("#update_status").val(therapist_schedule_status);
+
+    var i = 0;
+    $.each(schedule_time_update, function (key, value) {
+        if ($.inArray(value['value'], schedule_time) != -1) {
+            i++;
+            $('#' + value.id).prop(true);
+        }
+    });
+
+
+    
+    
+   
+    /* if(i > 1){
+        $("#update_back").hide();
+        $("#update_picker").show(); 
+    }else{
+        $("#update_picker").hide(); 
+        $("#update_back").show();
+    } */
+    //alert(i);

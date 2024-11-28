@@ -1,0 +1,167 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<h2 mat-dialog-title>View Employee Details</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-danger">X</button>
+    </mat-dialog-actions>
+    <!--START FORM-->
+    <form  [formGroup]="registerform" (ngSubmit)="onSubmit()">
+        <h4>Personal Details</h4>
+        <div class="row">
+            <!--start employee code-->
+            <div class="col-sm-6 form-group">
+                <label>Emp Code</label>
+                <input formControlName="emp_code" readonly="" class="form-control" type="text" placeholder="John">
+            </div>
+        </div>
+        <div class="row">
+            <!--first name-->
+            <div class="col-sm-4 form-group">
+                <label>First Name</label>
+                <input formControlName="first_name" readonly="" pattern="[a-zA-Z ]*" class="form-control" type="text" placeholder="John">
+            </div>
+            <!--middle name-->
+            <div class="col-sm-4 form-group">
+                <label>Middle Name</label>
+                <input formControlName="middle_name" readonly="" class="form-control" type="text" placeholder="Michael">
+            </div>
+            <!--last name-->
+            <div class="col-sm-4 form-group">
+                <label>Last Name</label>
+                <input formControlName="last_name" readonly="" class="form-control" type="text" placeholder="Hendry">
+            </div>
+        </div>
+        <div class="row">
+            <!--dob-->
+            <div class="col-sm-6 form-group">
+                <label>Dob</label>
+                <input formControlName="dob" readonly="" class="form-control" type="date" placeholder="01 May 1980">
+            </div>
+            <!--gender-->
+            <div class="col-sm-6 form-group">
+                <label>Gender</label>
+                <select class="form-control" disabled="true" id="gender" formControlName="gender">
+                    <option>--Select Gender--</option>
+                    <option value="F">Female</option>
+                    <option value="M">Male</option>
+                </select>
+            </div>
+        </div>
+
+        <h4>Contact_Info</h4>
+        <div class="row">
+            <!--mobile no-->
+            <div class="col-sm-6 form-group" >
+                <label>Mobile No.</label>
+                <input formControlName="mobile_no" readonly="" class="form-control" type="text" placeholder="+91 6565656567">
+            </div>
+            <!--alternative no-->
+            <div class="col-sm-6 form-group" >
+                <label>Alternate Mobile No.</label>
+                <input formControlName="alternate_mobile_no" readonly="" class="form-control" type="text" placeholder="+91 8988778787">
+            </div>
+        </div>
+        <div class="row">
+            <!--personal email-->
+            <div class="col-sm-6 form-group" >
+                <label class="form-control-label">Personal Email</label>
+                <input formControlName="personal_email" readonly="" class="form-control" type="text" placeholder="example@gmail.com">
+            </div>
+            <!--professional email-->
+            <div class="col-sm-6 form-group">
+                <label>Professional Email</label>
+                <input readonly="" formControlName="professional_email" class="form-control" type="text" placeholder="example1@gmail.com">
+            </div>
+        </div>
+        <div class="row">
+            <!--address-->
+            <div class="col-sm-6 form-group" >
+                <label>Address</label>
+                <input readonly="" formControlName="address" class="form-control" type="text" placeholder="Address">
+            </div>
+            <!--adhar no-->
+            <div class="col-sm-6 form-group">
+                <label>Adhar No.</label>
+                <input readonly="" formControlName="aadhaar" class="form-control" type="text" placeholder="xxxxx, xxxx. sd">
+            </div>
+        </div>
+        <h4>Bank_Info</h4>
+        <div class="row">
+            <!--pan card no-->
+            <div class="col-sm-6 form-group" >
+                <label>Pan Card No.</label>
+                <input formControlName="pan" readonly="" class="form-control" type="text" placeholder="xxxxx, xxxx. sd">
+            </div>
+            <!--account no.-->
+            <div class="col-sm-6 form-group">
+                <label>Account No.</label>
+                <input readonly="" formControlName="account_no" class="form-control" type="text" placeholder="xxxxx, xxxx. sd">
+            </div>
+        </div>
+        <div class="row">
+            <!--bank name-->
+            <div class="col-sm-6 form-group">
+                <label>Bank Name</label>
+                <input readonly="" class="form-control" formControlName="bank_name" type="text" placeholder="Bank Name">
+            </div>
+            <!--ifsc-->
+            <div class="col-sm-6 form-group">
+                <label>IFSC</label>
+                <input class="form-control" readonly="" formControlName="ifsc"  type="text" placeholder="IFSC No.">
+            </div>
+        </div>
+         
+        <h4>Educational Details</h4>
+        <div class="row">
+            <!--qualification-->
+            <div class="col-sm-6 form-group" >
+                <label>Qualification</label>
+                <input readonly="" formControlName="qualification" class="form-control" type="text" placeholder="Education Details">
+            </div>
+        </div>
+                               
+        <!--official-->
+        <h4>Offical Info</h4>
+        <div class="row">
+            <!--date of joining-->
+            <div class="col-sm-6 form-group">
+                <label>Date Of Joining</label>
+                <input formControlName="doj" readonly="" class="form-control" type="date" placeholder="Joining Date">
+            </div>
+            <!--designation-->
+            <div class="col-sm-6 form-group" >
+                <label>Designation</label>
+                <select disabled="true" class="form-control" formControlName="designation_id" >
+                    <option value="">--Select Gender--</option>
+                    <option value="{{item.id}}" *ngFor="let item of fetchdesign">{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <!--location name-->
+            <div class="col-sm-6 form-group" >
+                <label>Location Name</label>
+                <select class="form-control" disabled="true" formControlName="location_id">
+                    <option value="" >--Select Location--</option>
+                    <option value="{{data.id}}" *ngFor="let data of fetchloc">{{data.name}}</option>
+                </select>
+            </div>
+        </div>
+
+        <!--LEAVE DETAILS-->
+        <h4>Leave Details</h4>
+        <div class="row">
+            <!--sick leave-->
+            <div class="col-sm-6 form-group" >
+                <label>Sick Leave</label>
+                <input readonly="" formControlName="sl_entitled" pattern="[a-zA-Z ]*" class="form-control" type="text" placeholder="Sick Leave">
+            </div>
+            <div class="col-sm-6 form-group" >
+                <label>Causal Leave</label>
+                <input readonly="" formControlName="cl_entitled" class="form-control" type="text" placeholder="Causal Leave">
+            </div>
+        </div>
+    </form>
+    <!--end form-->
+</mat-dialog-content>

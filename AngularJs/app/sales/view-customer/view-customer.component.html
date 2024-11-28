@@ -1,0 +1,139 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<h2 mat-dialog-title>View Customer Details</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-danger">X</button>
+    </mat-dialog-actions>
+
+    
+        <!--Order section-->
+        <h4>Customer Information</h4>
+        <div style="border-style: double;">
+            <div class="row">
+                <!---customer name-->
+                <div class="col-sm-6 form-group">
+                    <label>Created By</label>
+                    <input value="{{created_by}}" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <!---mr/ms./miss-->
+                <div class="col-sm-6 form-group">
+                    <label>Title</label>
+                    <input value="{{title}}" class="form-control" readonly>
+                </div>
+
+                <!---website-->
+                <div class="col-sm-6 form-group">
+                    <label>Full Name
+                    </label>
+                    <input value="{{first_name}}" class="form-control" readonly>
+                </div>
+            </div>
+           
+
+            <div class="row">
+                <!---contact number 1-->
+                <div class="col-sm-6 form-group">
+                    <label>Contact Number 1
+                    </label>
+                    <input value="{{contact_number_1}}"  class="form-control" readonly>
+                </div>
+
+                <!---contact number 2-->
+                <div class="col-sm-6 form-group">
+                    <label>Contact Number 2
+                    </label>
+                    <input value="{{contact_number_2}}" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <!---email address-->
+                <div class="col-sm-6 form-group">
+                    <label>Email Address
+                    </label>
+                    <input value="{{email}}" class="form-control" readonly>
+                </div>
+
+                <!---website-->
+                <div class="col-sm-6 form-group">
+                    <label>Website
+                    </label>
+                    <input value="{{website}}" class="form-control" readonly>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <!---birth Date-->
+                <div class="col-sm-6 form-group">
+                    <label>Birth Date</label>
+                    <input value="{{birth_date}}" class="form-control" readonly>
+                </div>
+                <!---anniverysary Date-->
+                <div class="col-sm-6 form-group">
+                    <label>Anniversary Date</label>
+                    <input value="{{anniversary_date}}" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <h4>Address Information</h4>
+        <div style="border-style: double;">
+            <div class="row">
+                <!---mailing address-->
+                <div class="col-sm-6 form-group">
+                    <label>Mailing Address</label>
+                    <input value="{{mailing_address}}" class="form-control" readonly>
+                </div>
+
+                <!---mailing street-->
+                <div class="col-sm-6 form-group">
+                    <label>Mailing Street</label>
+                    <input value="{{mailing_street}}" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <!---city-->
+                <div class="col-sm-6 form-group">
+                    <label>City</label>
+                    <input value="{{city}}" class="form-control" readonly>
+                </div>
+
+                <!---State-->
+                <div class="col-sm-6 form-group">
+                    <label>State</label>
+                    <input value="{{state}}" class="form-control" readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <!---Zip/Postal Code-->
+                <div class="col-sm-6 form-group">
+                    <label>Zip/Postal Code</label>
+                    <input value="{{zip_code}}" class="form-control" readonly>
+                </div>
+
+                <!---Country-->
+                <div class="col-sm-6 form-group">
+                    <label>Country</label>
+                    <input value="{{country}}" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+
+        <h4>Description Information</h4>
+        <div style="border-style: double;">
+            <div class="row">
+                <!---description-->
+                <div class="col-sm-6 form-group">
+                    <label>Description</label>
+                    <input value="{{description}}" class="form-control" readonly>
+                </div>
+
+            </div>
+        </div>
+</mat-dialog-content>

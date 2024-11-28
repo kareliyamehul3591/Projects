@@ -1,0 +1,46 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <!--start page wrapper-->
+    <div class="page-wrapper">
+        <!--start header-->
+        <app-header></app-header>
+        <!--end header-->
+        
+        <!--start sidebar-->
+        <app-sidebar></app-sidebar>
+        <!--end sidebar-->
+
+        <!--start content wrapper-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                    <h1 class="page-title">Form 16</h1>
+            </div>
+            <div class="page-content fade-in-up">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <div class="ibox-title">
+                                    <select  (change)="selectvalue($event.target.value)"> 
+                                        <option value="0">--Select Year--</option>
+                                        <option *ngFor="let data of recent" value="{{data.year}}">{{data.year}}</option>
+                                    </select>&nbsp;
+                                    <a *ngIf="value!=0 &&  value"  target="_blank" href="{{'http://79.137.30.8:5000/'+path}}">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!--end content wrapper-->
+    </div>  
+     <!--end page wrapper--> 
+
+    <!--sidenav-->   
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>

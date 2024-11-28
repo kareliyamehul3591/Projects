@@ -1,0 +1,92 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <!--START PAGE WRAPPER-->
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- END HEADER-->
+
+
+        <!-- START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!-- END SIDEBAR-->
+
+        <!--START CONTENT WRAPPER-->
+       <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Add Location Form</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title"></div>
+                            <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                                <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right"> <a class="dropdown-item">option 1</a>
+                                    <a class="dropdown-item">option 2</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ibox-body">
+                            <!--START FORM-->
+                            <form [formGroup]="locationform" (ngSubmit)="onSubmit()">
+                                <!--LOCATION NAME-->
+                                <div class="form-group">
+                                    <label>Location Name</label>
+                                    <input formControlName="name" placeholder="Enter Location Name" class="form-control" type="text" >
+                                </div>
+                                <!--ADD BUTTON-->
+                                <div class="form-group">
+                                    <button  [disabled]="(!locationform.valid)" mat-raised-button color="primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ibox">
+                        <!--LOCATION LIST-->
+                        <div class="ibox-head">
+                            <div class="ibox-title">Location List</div>
+                            <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a></div>
+                        </div>
+                        <!--table-->
+                        <div class="ibox-body">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Location Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of recentdata;let i=index">
+                                        <td> {{i+1}} </td>
+                                        <td><input type="text" class="form-control" [(ngModel)]="data.name" [disabled]="!data.isEditable"/></td>
+                                        <td>
+                                            <button (click)="[data.isEditable=!data.isEditable,edit(data.id)]" class="btn btn-success btn-xs m-r-5" *ngIf="!data.isEditable" data-toggle="tooltip" >
+                                                <i class="fa fa-edit font-14"></i></button>
+                                            <button *ngIf="data.isEditable" [disabled]="(data.name=='')" (click)="[data.isEditable=!data.isEditable,update(data.id,data.name)]" class="btn btn-success btn-xs m-r-5" data-toggle="tooltip" ><i class="fa fa-save font-14"></i>
+                                            </button>
+                                            <button (click)="delete(data.id)" class="btn btn-danger btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--table-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END CONTENT WRAPPER-->
+    </div>
+    <!--END PAGE WRAPPER-->
+</body>
+</html>

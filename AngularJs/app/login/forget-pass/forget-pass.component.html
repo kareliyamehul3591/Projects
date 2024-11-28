@@ -1,0 +1,44 @@
+<!--showw spinner-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html>
+<body class="bg-silver-300" style="margin-top:0%;">
+    <div class="content" style="margin-top:12%">
+         <!--start form--> 
+        <form [formGroup]="forgetform" (ngSubmit)="onSubmit()">
+            <h2 class="login-title">Forget Password</h2>
+            <!--email id-->
+            <div class="form-group">
+                <div class="input-group-icon right">
+                    <div class="input-icon" [ngClass]="{'has-error':forgetform.get('email').errors &&
+                    (forgetform.get('email').touched || forgetform.get('email').dirty)
+                  }"><i class="fa fa-envelope"></i></div>
+                    <input class="form-control" formControlName="email"  type="email" name="email" placeholder="Email Id" autocomplete="off">
+                </div>
+                <span class="help-block" *ngIf="forgetform.get('email').errors &&
+                    (forgetform.get('email').touched || forgetform.get('email').dirty)">
+                    <span *ngIf="forgetform.get('email').errors.required" class="text-danger">Email Id is required</span>
+                </span>
+                <span class="help-block" *ngIf="forgetform.get('email').errors &&
+                    (forgetform.get('email').touched || forgetform.get('email').dirty)">
+                    <span *ngIf="forgetform.get('email').errors.email" class="text-danger">Email Id must be valid</span>
+                </span>
+            </div>
+           
+            <!--back button-->
+            <div class="form-group d-flex justify-content-between">
+               <a style="color:blue" (click)="back()">Back</a>
+            </div>
+            <!--submit button-->
+            <div class="form-group">
+                <button [disabled]="!forgetform.valid"  class="btn btn-info btn-block" type="submit">Submit</button>
+            </div>
+        </form>
+        <!--end form-->
+    </div>
+    
+    <!-- BEGIN PAGA BACKDROPS-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <br/><br/><br/><br/><br/>
+</body>
+</html>

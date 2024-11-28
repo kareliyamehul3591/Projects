@@ -1,0 +1,175 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+       <app-header></app-header>
+        <!-- END HEADER-->
+
+        <!-- START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!-- END SIDEBAR-->
+
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Purchase Invoice List</h1>
+            </div>
+
+            <div class="page-content fade-in-up">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head">
+                                <div class="ibox-title">Purchase Invoice Form</div>
+                                <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a></div>
+                            </div>
+                            <div class="ibox-body">
+                                <!--START FORM-->
+                                <form [formGroup]="invoiceForm" (ngSubmit)="onsubmit()">
+                                    <div class="row">
+                                        <!--vendor-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>PO Number</label>
+                                            <select formControlName="po_number" class="form-control" (change)="select_po($event.target.value)">
+                                                <option value="" disabled>--Select--</option>
+                                                <option *ngFor="let option of po_no" value="{{option.id}}">{{option.id}}</option>
+                                            </select>
+                                        </div>
+                                        <!--vendor-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Vendor</label>
+                                            <select formControlName="vendor" class="form-control">
+                                                <option value="" disabled>--Select--</option>
+                                                <option *ngFor="let value of vendor_name" value="{{value.vendor_name}}">{{value.vendor_name}}</option>
+                                            </select>
+                                        </div>
+                                        <!--Sale Date-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Invoice Date</label>
+                                            <input formControlName="invoice_date" class="form-control" type="date" placeholder="Purchase Date">
+                                        </div>
+                                        <!--Total Amount-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Total Amount</label>
+                                            <input formControlName="amount" class="form-control" type="text" placeholder="Total Amount">
+                                        </div>
+                                        <!--Remark-->
+                                        <div class="col-sm-6 form-group">
+                                            <label>Remark</label>
+                                            <input formControlName="remark" class="form-control" type="text" placeholder="Remark">
+                                        </div>
+                                        <!--upload_receipt-->
+                                        <div class="col-sm-4 form-group">
+                                            <label>Upload Receipt</label>
+                                            <input formControlName="upload_receipt" (change)="onSelectedFile($event)" class="form-control" type="file" placeholder="Upload Receipt">
+                                        </div>
+                                    </div>
+                                    <!--functionality btn-->
+                                    <div class="form-group">
+                                        <button mat-raised-button color="primary">Save</button>
+                                    </div>
+                                </form>
+                                <!--END FORM-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--table-->
+                <div class="page-content fade-in-up">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox">
+                                <div class="ibox-head">
+                                    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                                </div>
+                                <div class="ibox-body">
+                                    <div style="overflow:auto;">
+                                        <div class="mat-elevation-z8">
+                                            <mat-table [dataSource]="listData" matSort>
+                                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                                <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+                                                <!--PO NUMBER-->
+                                                <ng-container matColumnDef="po_number" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>PO Number</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">{{element.po_number}} </mat-header-cell>
+                                                </ng-container>
+                                                <!--VENDOR-->
+                                                <ng-container matColumnDef="vendor" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">
+                                                        <input type="text" matInput [(ngModel)]="element.vendor" [disabled]="!element.isEditable"/>
+                                                        <!-- <input type="text" class="form-control" [(ngModel)]="element.vendor" [disabled]="!element.isEditable"/> -->
+                                                    </mat-header-cell>
+                                                </ng-container>&nbsp;
+                                                <!--INVOICE DATE-->
+                                                <ng-container matColumnDef="invoice_date" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Date</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">
+                                                        <input type="date" matInput [(ngModel)]="element.invoice_date" [disabled]="!element.isEditable"/>
+                                                        <!-- <input type="date" class="form-control" [(ngModel)]="element.invoice_date" [disabled]="!element.isEditable"/> -->
+                                                    </mat-header-cell>
+                                                </ng-container>&nbsp;
+                                                <!--AMOUNT-->
+                                                <ng-container matColumnDef="amount" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">
+                                                        <input type="text" matInput [(ngModel)]="element.amount" [disabled]="!element.isEditable"/>
+                                                        <!-- <input type="text" class="form-control" [(ngModel)]="element.amount" [disabled]="!element.isEditable"/> -->
+                                                    </mat-header-cell>
+                                                </ng-container>&nbsp;
+                                                <!--REMARK-->
+                                                <ng-container matColumnDef="remark" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Remark</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">
+                                                        <input type="text" matInput [(ngModel)]="element.remark" [disabled]="!element.isEditable"/>
+                                                        <!-- <input type="text" class="form-control" [(ngModel)]="element.remark" [disabled]="!element.isEditable"/> -->
+                                                    </mat-header-cell>
+                                                </ng-container>&nbsp;
+                                                <!--UPLOAD RECEIPT-->
+                                                <ng-container matColumnDef="upload_receipt" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Upload Receipt</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">
+                                                        <input type="file" (change)="onSelectedFile1($event)" class="form-control" [(ngModel)]="element.upload_receipt" [disabled]="!element.isEditable"/>
+                                                    </mat-header-cell>
+                                                </ng-container>&nbsp;
+                                                <!--ACTION-->
+                                                <ng-container matColumnDef="action" >
+                                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+                                                    <mat-header-cell *matCellDef="let element">
+                                                        <button (click)="[element.isEditable=!element.isEditable,edit(element.id)]" *ngIf="!element.isEditable" class="btn btn-success btn-xs m-r-5"  data-toggle="tooltip" >
+                                                             <i class="fa fa-edit font-14"></i></button>
+                                                        <button *ngIf="element.isEditable" [disabled]="(element.vendor=='')" (click)="[element.isEditable=!element.isEditable,update(element.id,
+                                                            element.vendor,element.invoice_date,element.amount,element.remark,element.upload_receipt)]"
+                                                            class="btn btn-success btn-xs m-r-5" data-toggle="tooltip" ><i class="fa fa-save font-14"></i>
+                                                        </button>
+                                                        <button (click)="delete_invoice(element.id)" class="btn btn-danger btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i>
+                                                        </button>
+                                                    </mat-header-cell>
+                                                </ng-container>
+                                            </mat-table>
+                                            <!--PAGINATION-->
+                                            <mat-paginator [length]="100"
+                                                [pageSize]="10"
+                                                [pageSizeOptions]="[10, 25, 100]">
+                                            </mat-paginator>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--table-->
+            </div>
+        </div>
+        <!-- END PAGE CONTENT-->
+        
+        <!-- BEGIN PAGA BACKDROPS-->
+        <div class="sidenav-backdrop backdrop"></div>
+        <!-- END PAGA BACKDROPS-->
+    </div>
+</body>
+</html>

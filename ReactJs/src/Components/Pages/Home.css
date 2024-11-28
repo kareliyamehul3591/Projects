@@ -1,0 +1,30 @@
+@media (max-width:768px) {
+    .banner-img{
+       object-fit: cover;
+       height: 320px;
+       width: 100%;
+    }
+}  
+
+.color-txt {color: #F78739 !important;}
+
+.story-box h3 {
+    font-weight: 600;
+    font-size: 25px;
+    margin: 15px 0;
+}
+.story-box p {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 15px 0;
+    color: #000000;
+}
+
+#stories-slider {
+    right: -30px;
+    padding: 10px !important;
+}
+
+#success_story{
+    border-radius: 6%;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+  
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- end HEADER-->
+
+        <!-- START sidebar-->
+        <app-sidebar></app-sidebar>
+        <!-- end sidebar-->
+
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Lead List</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title">
+                                Lead Status :
+                                <select (change)="status($event.target.value)">
+                                    <option value="0">--Select Any--</option>
+                                    <option value="Open-Not Contacted">Open-Not Contacted</option>
+                                    <option value="Open-Contacted">Open-Contacted</option>
+                                    <option value="Closed-Converted">Closed-Converted</option>
+                                    <option value="Closed-Not Converted">Closed-Not Converted</option>
+                                </select>
+                            </div>
+                            <div class="ibox-tools"> <a  href="#" class="btn btn-primary" style="color:white" routerLink="/add-lead-info">
+                                <i class="fa fa-plus" aria-hidden="true"></i>New Leads</a>
+                            </div>
+                        </div>
+                        <div class="ibox-body">
+                            <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+                            <!--table-->
+                            <div class="page-content fade-in-up">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="ibox">
+                                            <div class="ibox-body">
+                                                <div class="mat-elevation-z8">
+                                                    <mat-table [dataSource]="listData" matSort>
+                                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                                        <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+                                                        <!--lead id-->
+                                                        <ng-container matColumnDef="id">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Lead Id</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">{{element.id}} 
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                         <!--first name-->
+                                                        <ng-container matColumnDef="fname">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">{{element.fname}} {{element.lname}}
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!--email id-->
+                                                        <ng-container matColumnDef="email">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Email Id</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">{{element.email}} 
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!--mobile no-->
+                                                        <ng-container matColumnDef="mobile_no">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile No.</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">{{element.mobile_no}} 
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!--company-->
+                                                        <ng-container matColumnDef="company">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Company</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">{{element.company}} 
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!--follow up-->
+                                                        <ng-container matColumnDef="follow_up">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Follow Up </mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">{{element.follow_up}} 
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!--lead status-->
+                                                        <ng-container matColumnDef="lead_status">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Lead Status</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">{{element.lead_status}} 
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!--action-->
+                                                        <ng-container matColumnDef="eid">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                <a (click)="openDialog(element.id)">
+                                                                   <i class='fa fa-eye' style="font-size:24px" title="View"></i>
+                                                                </a> &nbsp;&nbsp;
+                                                                <a (click)="edit_lead(element.id)">
+                                                                    <i class='fas fa-edit' style="font-size:24px" title="Edit"></i>
+                                                                </a> &nbsp;&nbsp;
+                                                                <a *ngIf="element.desname!='Admin'" (click)="delete_emp(element.id)">
+                                                                    <i class='fa fa-trash'  title="Delete" style="font-size:24px"></i>
+                                                                </a>
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                    </mat-table>
+
+                                                    <mat-paginator [length]="100"
+                                                        [pageSize]="10"
+                                                        [pageSizeOptions]="[10, 25, 100]">
+                                                    </mat-paginator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                               <!--table-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidenav-backdrop backdrop"></div>
+                    
+</body>
+</html>

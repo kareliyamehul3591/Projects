@@ -1,0 +1,178 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- END HEADER-->
+
+        <!-- START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!-- END SIDEBAR-->
+
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Quotation List</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-head">
+                            <div class="ibox-title">Quotation Form</div>
+                            <div class="ibox-tools"> <a class="ibox-collapse"><i class="fa fa-minus"></i></a> </div>
+                        </div>
+                        <!--START form section-->
+                        <div class="ibox-body">
+                            <form [formGroup]="quotationForm" (ngSubmit)="onsubmit()">
+                                <div class="row">
+                                     <!--purchase request no-->
+                                     <div class="col-sm-6 form-group">
+                                        <label>Purchase Request Number</label>
+                                        <select formControlName="pr_no" class="form-control" (change)="change_po_no($event.target.value)">
+                                            <option value="" disabled>--Select Any--</option>
+                                            <option *ngFor="let option of purchasevalue" value="{{option.id}}">{{option.id}}</option>
+                                        </select>
+                                        
+                                    </div>
+                                    <!--vendor-->
+                                    <div class="col-sm-6 form-group">
+                                        <label>Vendor</label>
+                                        <select formControlName="vendor" class="form-control" >
+                                            <option value="" disabled>--Select Any--</option>
+                                            <option *ngFor="let value of vendor_name" value="{{value.vendor_name}}">{{value.vendor_name}}</option>
+                                        </select>
+                                    </div>
+                                    <!--Sale Date-->
+                                    <div class="col-sm-6 form-group">
+                                        <label>Sale Date</label>
+                                        <input formControlName="sale_date" class="form-control" type="date" placeholder="Sale Date">
+                                    </div>
+                                    <!--Quantity-->
+                                    <div class="col-sm-6 form-group">
+                                        <label>Quantity</label>
+                                        <input formControlName="quantity" class="form-control" type="text" placeholder="Quantity">
+                                    </div>
+                                    <!--Total Amount-->
+                                    <div class="col-sm-6 form-group">
+                                        <label>Total Amount</label>
+                                        <input formControlName="amount" class="form-control" type="text" placeholder="Total Amount">
+                                    </div>
+                                    <!--Remark-->
+                                    <div class="col-sm-6 form-group">
+                                        <label>Remark</label>
+                                        <input formControlName="remark" class="form-control" type="text" placeholder="Remark">
+                                    </div>
+                                </div>
+                                    <!--functionality btn-->
+                                    <div class="form-group">
+                                        <button mat-raised-button color="primary">Save</button>
+                                    </div>
+                            </form>
+                       </div>
+                        <!--form section-->
+                        
+                        <div class="ibox-body">
+                            <!--table-->
+                            <div class="page-content fade-in-up">
+                                <div class="row">
+                                    <input matInput (keyup)="applyFilter($event.target.value)"placeholder="Search">
+                                        <div class="col-lg-12">
+                                            <div class="ibox">
+                                                <div class="ibox-body">
+                                                    <div class="mat-elevation-z8">
+                                                        <mat-table [dataSource]="listData" matSort>
+                                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                                        <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+                                                        <!----quotation no---->
+                                                        <ng-container matColumnDef="quotation_no">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Quotation No</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                {{element.id}}
+                                                                <!-- <input type="text" class="form-control" [(ngModel)]="element.id" readonly="">  -->
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!----pr no---->
+                                                        <ng-container matColumnDef="pr_id">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>PR No</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                {{element.pr_no}}
+                                                                <!-- <input type="text" class="form-control" [(ngModel)]="element.id" readonly="">  -->
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!----Vendor---->
+                                                        <ng-container matColumnDef="vendor">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Vendor</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                <input type="text" matInput [(ngModel)]="element.vendor" [disabled]="!element.isEditable"/>
+                                                                <!-- <input type="text"  [(ngModel)]="element.vendor" [disabled]="!element.isEditable"/> -->
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!---sale_date----->
+                                                        <ng-container matColumnDef="sale_date">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Sale Date</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                <input type="date" matInput [(ngModel)]="element.sale_date" [disabled]="!element.isEditable"/>
+                                                                <!-- <input type="date" class="form-control" [(ngModel)]="element.sale_date" [disabled]="!element.isEditable"/> -->
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!---quantity----->
+                                                        <ng-container matColumnDef="quantity">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                <input type="text" matInput [(ngModel)]="element.quantity" [disabled]="!element.isEditable"/>
+                                                                <!-- <input type="text" class="form-control" [(ngModel)]="element.quantity" [disabled]="!element.isEditable"/> -->
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!---amount----->
+                                                        <ng-container matColumnDef="amount">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                <input type="text" matInput [(ngModel)]="element.amount" [disabled]="!element.isEditable"/>
+                                                                <!-- <input type="text" class="form-control" [(ngModel)]="element.amount" [disabled]="!element.isEditable"/> -->
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!---remark----->
+                                                        <ng-container matColumnDef="remark">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Remark</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                <input type="text" matInput [(ngModel)]="element.remark" [disabled]="!element.isEditable"/>
+                                                                <!-- <input type="text" class="form-control" [(ngModel)]="element.remark" [disabled]="!element.isEditable"/> -->
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                        <!---Action-->
+                                                        <ng-container matColumnDef="action">
+                                                            <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+                                                            <mat-header-cell *matCellDef="let element">
+                                                                <button (click)="[element.isEditable=!element.isEditable,edit(element.action)]" *ngIf="!element.isEditable" class="btn btn-success btn-xs m-r-5"  data-toggle="tooltip" >
+                                                                    <i class="fa fa-edit font-14"></i></button>
+                                                                <button *ngIf="element.isEditable" [disabled]="(element.vendor=='')" (click)="[element.isEditable=!element.isEditable,update(element.id,
+                                                                    element.vendor,element.sale_date,element.quantity,element.amount,element.remark)]"
+                                                                    class="btn btn-success btn-xs m-r-5" data-toggle="tooltip" ><i class="fa fa-save font-14"></i>
+                                                                </button>
+                                                                <button (click)="delete_quotation(element.id)" class="btn btn-danger btn-xs" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash font-14"></i>
+                                                                </button>
+                                                            </mat-header-cell>
+                                                        </ng-container>
+                                                    </mat-table>
+                                                   <!---Pagination-->
+                                                    <mat-paginator [length]="100" [pageSize]="10"
+                                                        [pageSizeOptions]="[10, 25, 100]">
+                                                    </mat-paginator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--table-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidenav-backdrop backdrop"></div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <!--START PAGE WRAPPER-->
+    <div class="page-wrapper">
+        <!--START HEADER-->
+        <app-header></app-header>
+        <!--END HEADER-->
+
+        <!--START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!--END SIDEBAR-->
+
+        <!--START CONTENT WRAPPER-->
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Employees Attendance List</h1>
+            </div>
+            <div class="page-content fade-in-up">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox">
+                            <div class="ibox-head d-flex flex-row bd-highlight mb-3">
+                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+
+                                <button type="button" (click)="filedownload()">CSV</button>
+                                <div>
+                                    <input type="date" (change)="applyFilter($event.target.value)">
+                                </div>
+                                
+                                <!-- <input matInput [matDatepicker] = "myDatepicker">
+                                <mat-datepicker-toggle [for]="myDatepicker" matSuffix> </mat-datepicker-toggle>
+                                <mat-datepicker #myDatepicker></mat-datepicker> -->
+                            </div>
+
+                            <div style="overflow: auto">
+                                <div class="mat-elevation-z8">
+                                    <!--START TABLE-->
+                                    <mat-table [dataSource]="listData" matSort>
+                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns:displayedColumns;"></mat-row>
+                                        <!--EMPLOYEE CODE-->
+                                        <ng-container matColumnDef="emp_code">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Emp-Code</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.emp_code}}
+                                            </mat-header-cell>
+                                        </ng-container>
+                                        <!--EMPLOYEE NAME-->
+                                        <ng-container matColumnDef="fullname">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Name</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.fullname}}
+                                            </mat-header-cell>
+                                        </ng-container>
+                                        <!--DATE-->
+                                        <ng-container matColumnDef="date">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Date</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.date}}
+                                            </mat-header-cell>
+                                        </ng-container>
+                                        <!--CHECK IN-->
+                                        <ng-container matColumnDef="check_in">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Check_In</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.check_in}}
+                                            </mat-header-cell>
+                                        </ng-container>
+                                        <!--CHECK OUT-->
+                                        <ng-container matColumnDef="check_out">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Check Out</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.check_out}}
+                                            </mat-header-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="activity">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Activity</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.activity}}
+                                            </mat-header-cell>
+                                        </ng-container>
+
+                                        <!--HOURS/MINUTE-->
+                                        <ng-container matColumnDef="worked_hours">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Hours/Minute</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.worked_hours}}
+                                            </mat-header-cell>
+                                        </ng-container>
+                                        <!--PRESENTY MARK-->
+                                        <ng-container matColumnDef="attendance">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Presenty Mark</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">{{element.attendance}}
+                                            </mat-header-cell>
+                                        </ng-container>
+                                        <!--ACTION-->
+                                        <ng-container matColumnDef="id">
+                                            <mat-header-cell *matHeaderCellDef mat-sort-header><b>Action</b>
+                                            </mat-header-cell>
+                                            <mat-header-cell *matCellDef="let element">
+                                                <a (click)="delete_emp(element.id)">
+                                                    <i class='fa fa-trash' style="font-size:24px"></i>
+                                                </a>
+                                            </mat-header-cell>
+                                        </ng-container>
+                                    </mat-table>
+                                    <!--END TABLE-->
+                                    <!--START PAGINATION-->
+                                    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                                    </mat-paginator>
+                                    <!--END PAGINATION-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END CONTENT WRAPPER-->
+    </div>
+    <!--END PAGE WRAPPER-->
+
+    <!--SIDENAV-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <!--SIDENAV-->
+</body>
+
+</html>

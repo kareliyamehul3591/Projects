@@ -1,0 +1,223 @@
+<!--SHOW SPINNER-->
+<ngx-spinner></ngx-spinner>
+<!DOCTYPE html>
+<html lang="en">
+<body class="fixed-navbar">
+    <div class="page-wrapper">
+        <!-- START HEADER-->
+        <app-header></app-header>
+        <!-- END HEADER-->
+
+        <!-- START SIDEBAR-->
+        <app-sidebar></app-sidebar>
+        <!-- END SIDEBAR-->
+
+        <div class="content-wrapper">
+            <div class="page-heading">
+                <h1 class="page-title">Update Customer Details</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox">
+                        <div class="ibox-body">
+                             <!--foorm-->
+        <form [formGroup]="customerForm" (ngSubmit)="onsubmit()">
+            <!--Order section-->
+            <h4>Customer Information</h4>
+            <div style="border-style: double;">
+                <div class="row">
+                    <!---customer name-->
+                    <div class="col-sm-6 form-group">
+                        <label>Created By</label>
+                        <input formControlName="created_by" class="form-control" type="text" placeholder="John" readonly>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!---mr/ms./miss-->
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error':customerForm.get('title').errors &&
+                        (customerForm.get('title').touched || customerForm.get('title').dirty)}">
+                        <label>Title<span style="color:red">*</span></label>
+                        <select class="form-control" formControlName="title">
+                            <option value="" disabled>--Select Any--</option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Miss.">Miss.</option>
+                            <option value="Mrs.">Mrs.</option>
+                        </select>
+                        <span class="help-block" *ngIf="customerForm.get('title').errors &&
+                            (customerForm.get('title').touched || customerForm.get('title').dirty)">
+                            <span *ngIf="customerForm.get('title').errors.required" class="text-danger">Title is required</span>
+                        </span>
+                    </div>
+                    <!---First name-->
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error':customerForm.get('first_name').errors &&
+                        (customerForm.get('first_name').touched || customerForm.get('first_name').dirty)}">
+                        <label>Full Name<span style="color:red">*</span></label>
+                        <input type="text" class="form-control" placeholder="First Name" formControlName="first_name">
+                        <span class="help-block" *ngIf="customerForm.get('first_name').errors &&
+                            (customerForm.get('first_name').touched || customerForm.get('first_name').dirty)">
+                            <span *ngIf="customerForm.get('first_name').errors.required" class="text-danger">First Name is required</span>
+                            <span *ngIf="customerForm.get('first_name').errors.minlength || 
+                            customerForm.get('first_name').errors.pattern" class="text-danger">Please enter valid entry</span>
+                        </span>
+                    </div>
+                    <!---last name-->
+                    <!-- <div class="col-sm-4 form-group" [ngClass]="{'has-error':customerForm.get('last_name').errors &&
+                    (customerForm.get('last_name').touched || customerForm.get('last_name').dirty)}">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" placeholder="Last Name" formControlName="last_name">
+                        <span class="help-block" *ngIf="customerForm.get('last_name').errors &&
+                            (customerForm.get('last_name').touched || customerForm.get('last_name').dirty)">
+                            <span *ngIf="customerForm.get('last_name').errors.required" class="text-danger">Middle Name is required</span>
+                            <span *ngIf="customerForm.get('last_name').errors.minlength || 
+                            customerForm.get('last_name').errors.pattern" class="text-danger">Please enter valid entry</span>
+                        </span>
+                    </div> -->
+                </div>
+                <div class="row">
+                <!---contact number 1-->
+                    <div class="col-sm-6 form-group" [ngClass]="{'has-error':customerForm.get('contact_number_1').errors &&
+                    (customerForm.get('contact_number_1').touched || customerForm.get('contact_number_1').dirty)}">
+                        <label>Contact Number 1<span style="color:red">*</span></label>
+                        <input type="text" class="form-control" placeholder="989898989898" formControlName="contact_number_1">
+                        <span class="help-block" *ngIf="customerForm.get('contact_number_1').errors &&
+                            (customerForm.get('contact_number_1').touched || customerForm.get('contact_number_1').dirty)">
+                            <span *ngIf="customerForm.get('contact_number_1').errors.minlength || 
+                            customerForm.get('contact_number_1').errors.pattern"
+                            class="text-danger">Contact Number 1 should be 10 digit</span>
+                        </span>
+                    </div>
+                <!---contact number 2-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':customerForm.get('contact_number_2').errors &&
+                (customerForm.get('contact_number_2').touched || customerForm.get('contact_number_2').dirty)}">
+                    <label>Contact Number 2<span style="color:red">*</span></label>
+                    <input type="text" class="form-control" placeholder="989898989898" formControlName="contact_number_2">
+                    <span class="help-block" *ngIf="customerForm.get('contact_number_2').errors &&
+                    (customerForm.get('contact_number_2').touched || customerForm.get('contact_number_2').dirty)">
+                    <span *ngIf="customerForm.get('contact_number_2').errors.minlength || 
+                    customerForm.get('contact_number_2').errors.pattern"
+                    class="text-danger">Contact Number 1 should be 10 digit</span>
+                </span>
+                </div>
+            </div>
+            <div class="row">
+                <!---email address-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':customerForm.get('email').errors &&
+                    (customerForm.get('email').touched || customerForm.get('email').dirty)}">
+                    <label>Email Address<span style="color:red">*</span></label>
+                    <input type="text" class="form-control" placeholder="john@gmail.com" formControlName="email">
+                    <span class="help-block" *ngIf="customerForm.get('email').errors &&
+                        (customerForm.get('email').touched || customerForm.get('email').dirty)">
+                        <span *ngIf="customerForm.get('email').errors.email || 
+                        customerForm.get('email').errors.email" class="text-danger">Email id is not in valid format</span>
+                    </span>
+                </div>
+                <!---website-->
+                <div class="col-sm-6 form-group">
+                    <label>Website</label>
+                    <input type="text" class="form-control" placeholder="www.google.com" formControlName="website">
+                </div>
+            </div>
+            <div class="row">
+                <!---birth Date-->
+                <div class="col-sm-6 form-group" [ngClass]="{'has-error':customerForm.get('birth_date').errors &&
+                    (customerForm.get('birth_date').touched || customerForm.get('birth_date').dirty)}">
+                    <label>Birth Date</label>
+                    <input class="form-control" formControlName="birth_date" type="date" placeholder="01/01/1974">
+                    <span class="help-block" *ngIf="customerForm.get('birth_date').errors &&
+                        (customerForm.get('birth_date').touched || customerForm.get('birth_date').dirty)">
+                        <span *ngIf="customerForm.get('birth_date').errors.required"
+                        class="text-danger">This Field is required</span>
+                    </span>
+                </div>
+                 <!---anniversiry Date-->
+                 <div class="col-sm-6 form-group" [ngClass]="{'has-error':customerForm.get('anniversary_date').errors &&
+                 (customerForm.get('anniversary_date').touched || customerForm.get('anniversary_date').dirty)
+                 }">
+                 <label>Anniversary Date</label>
+                 <input class="form-control" formControlName="anniversary_date" type="date"
+                     placeholder="01/01/1974">
+                 <span class="help-block"
+                     *ngIf="customerForm.get('anniversary_date').errors &&
+                             (customerForm.get('anniversary_date').touched || customerForm.get('anniversary_date').dirty)">
+                     <span *ngIf="customerForm.get('anniversary_date').errors.required"
+                         class="text-danger">This Field is required</span>
+                 </span>
+             </div>
+            </div>
+        </div>
+        <h4>Address Information</h4>
+        <div style="border-style: double;">
+            <div class="row">
+                <!---mailing address-->
+                <div class="col-sm-6 form-group">
+                    <label>Mailing Address</label>
+                    <textarea formControlName="mailing_address" class="form-control" type="text" placeholder="Description"></textarea>
+                </div>
+                <!---mailing street-->
+                <div class="col-sm-6 form-group">
+                    <label>Mailing Street</label>
+                    <input formControlName="mailing_street" class="form-control" type="text" placeholder="mailing street">
+                </div>
+            </div>
+            <div class="row">
+                <!---city-->
+                <div class="col-sm-6 form-group">
+                    <label>City</label> 
+                    <input formControlName="city" class="form-control" type="text"  placeholder="Pune">
+                </div>
+                <!---State-->
+                <div class="col-sm-6 form-group">
+                    <label>State</label>
+                    <input formControlName="state" class="form-control" type="text" placeholder="Maharashtra">
+                </div>
+            </div>
+            <div class="row">
+                <!---Zip/Postal Code-->
+                <div class="col-sm-6 form-group">
+                    <label>Zip/Postal Code</label>
+                    <input formControlName="zip_code" class="form-control" type="text" placeholder="411015">
+                </div>
+                <!---Country-->
+                <div class="col-sm-6 form-group">
+                    <label>Country</label>
+                    <input formControlName="country" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        <h4>Description Information</h4>
+        <div style="border-style: double;">
+            <div class="row">
+                <!---description-->
+                <div class="col-sm-6 form-group">
+                    <label>Description</label>
+                    <textarea formControlName="description" class="form-control" type="text" placeholder="Description"></textarea>
+                </div>
+            </div>
+        </div>
+        <!--funtionality button-->
+        <div class="row" class="mt-4">
+            <div class="form-group">
+                <button mat-raised-button color="primary" [disabled]="(!customerForm.valid)">Save</button>
+                &nbsp;&nbsp;
+                <button routerLink="/customer-list" mat-raised-button color="warn">Cancel</button>
+            </div>
+        </div>
+        <!--funtionality button-->
+    </form>
+      <!--foorm-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- -->
+        </div>
+    </div>
+
+    <div class="sidenav-backdrop backdrop"></div>
+
+</body>
+
+</html>

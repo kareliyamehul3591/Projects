@@ -1,0 +1,89 @@
+<!--show spinner-->
+<ngx-spinner></ngx-spinner>
+<h2 mat-dialog-title>View Vendor Details</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-danger">X</button>
+    </mat-dialog-actions>
+
+    <form >
+    <!--lead section-->
+    <div class="row">
+        <!--vendor name-->
+        <div class="col-sm-6 form-group">
+            <label>Vendor Name</label>
+            <input value="{{vendor_name}}" class="form-control" readonly="" type="text" placeholder="Vendor Name">
+        </div>
+        <!--vendor address-->
+        <div class="col-sm-6 form-group">
+            <label>Vendor Address</label>
+            <input value="{{vendor_address}}" class="form-control" readonly="" type="text" placeholder="Vendor Address">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--contact person-->
+        <div class="col-sm-6 form-group">
+            <label>Contact Person</label>
+            <input value="{{contact_person}}" class="form-control" readonly="" type="text" placeholder="Contact Person">
+        </div>
+        <!--contact no.-->
+        <div class="col-sm-6 form-group">
+            <label>Contact Number 1</label>
+            <input value="{{contact_number}}"  class="form-control" readonly="" type="text" placeholder="Contact Number">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--email address-->
+        <div class="col-sm-6 form-group">
+            <label>Email address </label>
+            <input  value="{{email}}" class="form-control" type="text" readonly="" placeholder="Email address">
+        </div>
+        <!--landline-->
+        <div class="col-sm-6 form-group">
+            <label>Landline </label>
+            <input value="{{landline}}" class="form-control" type="text" readonly="" placeholder="Landline">
+        </div>
+     </div>
+
+    <div class="row">
+        <!--vendor code-->
+        <div class="col-sm-6 form-group" >
+            <label>Vendor Code</label>
+            <input value="{{vendor_code}}" class="form-control" readonly="" type="text" placeholder="Vendor Code">
+        </div>
+        <!--pan details-->
+        <div class="col-sm-6 form-group">
+            <label>GST/PAN Details</label>
+            <input value="{{gst}}"  class="form-control" type="text" readonly="" placeholder="GST/PAN Details">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--bank name-->
+        <div class="col-sm-6 form-group">
+            <label>Bank Name</label>
+            <input value="{{bank_name}}" class="form-control" type="text" readonly="" placeholder="Bank Name">
+        </div>
+        <!--account no.-->
+        <div class="col-sm-6 form-group">
+            <label>Account Number</label>
+            <input value="{{account_number}}" class="form-control" type="text" readonly="" placeholder="Account Number">
+        </div>
+    </div>
+
+    <div class="row">
+        <!--product category-->
+        <div class="col-sm-6 form-group">
+            <label>Product Category</label>
+            <input value="{{product_category}}" class="form-control" type="text" readonly="" placeholder="Account Number">
+        </div>
+        <!--ifsc code-->
+        <div class="col-sm-6 form-group" >
+            <label>IFSC_Code</label>
+            <input  value="{{ifsc_code}}" class="form-control" type="text" readonly="" placeholder="IFSC_Code">
+        </div>
+    </div>
+    </form>
+</mat-dialog-content>

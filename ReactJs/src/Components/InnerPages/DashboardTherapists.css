@@ -1,0 +1,9 @@
+.profile_image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+#result_found{
+    font-size: 32px;
+margin-left: 36%;
+}

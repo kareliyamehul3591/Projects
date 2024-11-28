@@ -1,0 +1,23 @@
+<% include ../Partials/HeaderRoot  %>
+
+ <div class="wrapper-page">
+
+            <div class="card">
+                <div class="card-body">
+                    
+                    <h3 class="text-center m-0">
+                        <a href="/" class="logo logo-admin"><img src="<%= process.env.AAP_URL %>public/assets/images/logo.png" height="30" alt="logo"></a>
+                    </h3>
+
+                    <div class="p-3">
+                        <h4 class="text-muted font-18 mb-3 text-center"><%= title %></h4>
+                         <div class="alert alert-danger" role="alert">
+                            <%= message %>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+<% include ../Partials/FooterRoot  %>
+

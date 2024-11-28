@@ -1,0 +1,7 @@
+.submenu{
+    display:none;
+}
+
+.companymenuli:hover > ul{
+    display:block;
+}
