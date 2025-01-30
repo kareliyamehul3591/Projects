@@ -1,0 +1,21 @@
+version: "3"
+services:
+  application:
+    env_file: .env
+    image: digital-signage/digital-signage-api
+    build: .
+    command: pm2-runtime index.js
+    volumes:
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    ports:
+      - "5000"
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - application
+    ports:
+      - "8081:3000"
