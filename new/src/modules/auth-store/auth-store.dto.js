@@ -1,0 +1,55 @@
+'use strict';
+const { GetDTO } = require( '../store/store.dto' );
+
+class LoginRequestDTO {
+    constructor( { ...props } ) {
+        this.phone = props.phone;
+        this.password = props.password;
+        this.deviceToken = props.deviceToken;
+        Object.freeze( this );
+    }
+}
+
+class LoginResponseDTO {
+    constructor( { ...props } ) {
+        this.token = props.token;
+        this.store = new GetDTO( props.store );
+        Object.freeze( this );
+    }
+}
+
+class RegisterRequestDTO {
+    constructor( { ...props } ) {
+        this.name = props.name;
+        this.email = props.email ? props.email.toLowerCase() : undefined;
+        this.phone = props.phone;
+        this.password = props.password;
+        this.role = props.role;
+        this.parentUser = props.parentUser;
+        this.status = props.status;
+        // Delete Fields which are not present in data
+        Object.keys( this ).forEach( key => {
+            if ( this[ key ] === undefined ) {
+                delete this[ key ];
+            }
+        } );
+        Object.freeze( this );
+    }
+}
+
+class RegisterResponseDTO extends GetDTO {
+    constructor( { ...props } ) {
+        super( props );
+    }
+}
+
+class JWTSignDTO {
+    constructor( { ...props } ) {
+        this._id = props._id.toString();
+        this.phone = props.phone;
+        this.name = props.name;
+        Object.freeze( this );
+    }
+}
+
+module.exports = { LoginRequestDTO, LoginResponseDTO, RegisterRequestDTO, RegisterResponseDTO, JWTSignDTO };
